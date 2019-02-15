@@ -1,5 +1,6 @@
 package com.agiledev.agiledeveloper;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,33 +14,47 @@ import com.agiledev.agiledeveloper.services.ProjectService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button buttonLogin;
+    private Button buttonProject;
     private TextView textView;
 
     private ProjectDataController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        textView = (TextView) findViewById(R.id.text);
-        button = (Button) findViewById(R.id.button);
+        textView = (TextView) findViewById(R.id.loginTitle);
+        buttonLogin = (Button) findViewById(R.id.loginButton);
+        buttonProject = (Button) findViewById(R.id.createProjectButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test();
+                login();
+            }
+        });
+
+        buttonProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createProject();
             }
         });
 
     }
 
 
-    public void test() {
+    public void login() {
         ProjectService service = new ProjectService(this);
         service.login();
+    }
+
+    public void createProject() {
+        Intent intent = new Intent(getBaseContext(), ProjectActivity.class);
+        this.startActivity(intent);
     }
 
     public void setText(String text) {

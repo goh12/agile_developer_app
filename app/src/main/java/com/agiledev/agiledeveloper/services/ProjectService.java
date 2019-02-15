@@ -1,16 +1,10 @@
 package com.agiledev.agiledeveloper.services;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.agiledev.agiledeveloper.MainActivity;
-import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
-import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
+import com.agiledev.agiledeveloper.LoginActivity;
 import com.agiledev.agiledeveloper.dataparers.ProjectDataParser;
 import com.agiledev.agiledeveloper.entities.Project;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ProjectService {
 
@@ -35,9 +29,9 @@ public class ProjectService {
                 Project project = new Project();  //Setja upp gögnin sem þarf að vinna úr.
                 project.setToken("florg");
 
-                String ret = parser.testLogin(project);  //Kall á DataParser til að vinna úr gögnum
+                final String ret = parser.testLogin(project);  //Kall á DataParser til að vinna úr gögnum
 
-                MainActivity activity = (MainActivity) context;
+                final LoginActivity activity = (LoginActivity) context;
                 activity.runOnUiThread(new Runnable() {
                     /*
                         Hérna erum við að biðja  UserInterfaceThread að taka við aftur. Við þurfum að

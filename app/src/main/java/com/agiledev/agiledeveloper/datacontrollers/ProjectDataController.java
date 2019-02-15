@@ -3,20 +3,14 @@ package com.agiledev.agiledeveloper.datacontrollers;
 
 import android.util.Log;
 
-import com.agiledev.agiledeveloper.MainActivity;
+import com.agiledev.agiledeveloper.LoginActivity;
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
-import com.franmontiel.persistentcookiejar.PersistentCookieJar;
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.CookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -24,7 +18,7 @@ import okhttp3.Response;
 
 public class ProjectDataController {
     private OkHttpClient client;  //OkHttpClient singleton.
-    private MainActivity act;
+    private LoginActivity act;
 
     /**
      * Constructor, fetches singleton OkHttpClient.
