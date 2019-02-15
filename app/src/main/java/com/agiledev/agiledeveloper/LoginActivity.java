@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
     private Button buttonProject;
     private TextView textView;
+    private EditText tokenInput;
 
     private ProjectDataController controller;
     @Override
@@ -29,11 +31,13 @@ public class LoginActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.loginTitle);
         buttonLogin = (Button) findViewById(R.id.loginButton);
         buttonProject = (Button) findViewById(R.id.createProjectButton);
+        tokenInput = (EditText) findViewById(R.id.tokenInput);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                String content = tokenInput.getText().toString();
+                login(content);
             }
         });
 
@@ -47,9 +51,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void login() {
+    public void login(String token) {
         ProjectService service = new ProjectService(this);
-        service.login();
+        service.login(token);
     }
 
     public void createProject() {
