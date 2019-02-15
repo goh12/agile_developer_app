@@ -5,13 +5,18 @@ import android.util.Log;
 
 import com.agiledev.agiledeveloper.MainActivity;
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.CookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -32,9 +37,9 @@ public class ProjectDataController {
     /**
      * Log in on server.
      * @param json holding project token.
-     * @return jsonResponse Response body
+     * @return json Response body, null if failure.
      */
-    public String login(JSONObject json) {
+    public JSONObject login(JSONObject json) {
         RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
         Request req = new Request.Builder()
                 .url("https://agiledevhb.herokuapp.com/api/projects/login")
@@ -44,26 +49,82 @@ public class ProjectDataController {
         try {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()){
-                return res.body().string();
+                JSONObject ret = new JSONObject();
+                ret.put("status", res.body().string());
+                return ret;
             }
 
             return null;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+        } catch (JSONException e) {
+            Log.e("NETWORKING", "Failed to parse JSON response.");
+            e.printStackTrace();
         }
+        return null;
     };
 
+    /**
+     * Calls server to create a  new project.
+     * @param json { name, token }
+     * @return json Response body, null if failure.
+     */
+    public JSONObject save(JSONObject json) {
+        RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
+        Request req = new Request.Builder()
+                .url("https://agiledevhb.herokuapp.com/api/projects/create")
+                .post(body)
+                .build();
 
-    public void save(JSONObject json) {
-        // TODO implement
-        Log.e("IMPLEMENTATION", "No implementation yet. ProjectDataController::save(JSONObject)");
+        try {
+            Response res = client.newCall(req).execute();
+            if (res.isSuccessful()) {
+                JSONObject ret = new JSONObject();
+                ret.put("status", res.body().string());
+
+                Log.e("NETWORKING", ret.getString("status"));
+                return ret;
+            }
+
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            Log.e("NETWORKING", "Failed to parse JSON response.");
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
-    public void delete(JSONObject json) {
-        // TODO implement
-        Log.e("IMPLEMENTATION", "No implementation yet. ProjectDataController::delete(JSONObject)");
+
+    public JSONObject checkLogin() {
+        Request req = new Request.Builder()
+                .url("https://agiledevhb.herokuapp.com/api/projects/")
+                .build();
+
+        try {
+            Response res = client.newCall(req).execute();
+            if (res.isSuccessful()) {
+                JSONObject ret = new JSONObject();
+                ret.put("status", res.body().string());
+
+                Log.e("NETWORKING", ret.getString("status"));
+                return ret;
+            }
+
+            Log.e("NETWORKING", "Error " + res);
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            Log.e("NETWORKING", "Failed to parse JSON response.");
+            e.printStackTrace();
+        }
+
+        return null;
     }
+
 
 }
 
