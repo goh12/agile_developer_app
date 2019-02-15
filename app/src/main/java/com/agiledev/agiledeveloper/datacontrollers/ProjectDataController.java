@@ -1,13 +1,11 @@
-package com.agiledev.agiledeveloper.datacontroller;
+package com.agiledev.agiledeveloper.datacontrollers;
 
 
 import android.util.Log;
 
 import com.agiledev.agiledeveloper.MainActivity;
-import com.agiledev.agiledeveloper.R;
-import com.agiledev.agiledeveloper.datacontroller.networking.Networking;
+import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -26,8 +24,7 @@ public class ProjectDataController {
     /**
      * Constructor, fetches singleton OkHttpClient.
      */
-    public ProjectDataController(MainActivity act) {
-        this.act = act;
+    public ProjectDataController() {
         client = Networking.getClient();
     }
 
@@ -37,28 +34,24 @@ public class ProjectDataController {
      * @param json holding project token.
      * @return jsonResponse Response body
      */
-    public void login(JSONObject json) {
+    public String login(JSONObject json) {
         RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
         Request req = new Request.Builder()
                 .url("https://agiledevhb.herokuapp.com/api/projects/login")
                 .post(body)
                 .build();
 
-        client.newCall(req).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Log.e("Networking", "Login failed");
-                // TODO call parser for error?
+        try {
+            Response res = client.newCall(req).execute();
+            if (res.isSuccessful()){
+                return res.body().string();
             }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String t = response.body().string();
-                // TODO call parser with response
-            }
-        });
-
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     };
 
 

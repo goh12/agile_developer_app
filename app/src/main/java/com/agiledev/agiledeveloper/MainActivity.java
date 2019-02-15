@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.agiledev.agiledeveloper.datacontroller.ProjectDataController;
+import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
+import com.agiledev.agiledeveloper.services.ProjectService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private ProjectDataController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        controller = new ProjectDataController(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -38,14 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void test() {
-        try {
-            JSONObject ob = new JSONObject();
-            ob.put("token", "florg");
-
-            controller.login(ob);
-        } catch (JSONException e) {
-            Log.e("JSON", "Failed to create json object");
-        }
+        ProjectService service = new ProjectService(this);
+        service.login();
     }
 
     public void setText(String text) {

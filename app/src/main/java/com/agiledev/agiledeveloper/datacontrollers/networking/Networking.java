@@ -1,4 +1,4 @@
-package com.agiledev.agiledeveloper.datacontroller.networking;
+package com.agiledev.agiledeveloper.datacontrollers.networking;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
