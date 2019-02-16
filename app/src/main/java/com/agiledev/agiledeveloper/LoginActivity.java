@@ -1,5 +1,6 @@
 package com.agiledev.agiledeveloper;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,7 +63,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void setText(String text) {
-        textView.setText(text);
+
+        if (text == "success") {
+            textView.setText(text);
+
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            builder.setMessage("Login failed")
+                    .setNegativeButton("Retry",null)
+                    .create()
+                    .show();
+        }
     }
 
 }
