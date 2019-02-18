@@ -13,7 +13,7 @@ public class ProjectDataParser {
         this.controller = new ProjectDataController();
     }
 
-    public String testLogin(Project project) {
+    public String login(Project project) {
         try {
             JSONObject ob = new JSONObject();
 
@@ -34,4 +34,31 @@ public class ProjectDataParser {
         }
         return null;
     }
+
+    public String save(Project project){
+        try {
+            JSONObject ob = new JSONObject();
+
+            if (project.getToken() != null) {
+                ob.put("token", project.getToken());
+            } else {
+                return null;
+            }
+
+            if (project.getName() != null) {
+                ob.put("name", project.getName());
+            } else {
+                return null;
+            }
+
+            ob = this.controller.save(ob);
+            return ob.getString("status");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
