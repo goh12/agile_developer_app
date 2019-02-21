@@ -73,6 +73,6 @@ public class ProjectDataParser {
     }
 
     public String checkLogin(Project project) {
-        return null;
+        return "false";
     }
 }
