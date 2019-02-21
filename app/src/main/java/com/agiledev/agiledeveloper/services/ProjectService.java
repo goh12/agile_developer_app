@@ -5,7 +5,7 @@ import android.content.Context;
 import com.agiledev.agiledeveloper.CreateProjectActivity;
 import com.agiledev.agiledeveloper.LoginActivity;
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
-import com.agiledev.agiledeveloper.dataparers.ProjectDataParser;
+import com.agiledev.agiledeveloper.dataparsers.ProjectDataParser;
 import com.agiledev.agiledeveloper.entities.Project;
 
 public class ProjectService {

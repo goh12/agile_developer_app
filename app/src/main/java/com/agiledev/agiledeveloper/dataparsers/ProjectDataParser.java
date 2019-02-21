@@ -1,4 +1,4 @@
-package com.agiledev.agiledeveloper.dataparers;
+package com.agiledev.agiledeveloper.dataparsers;
 
 import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
 import com.agiledev.agiledeveloper.entities.Project;
