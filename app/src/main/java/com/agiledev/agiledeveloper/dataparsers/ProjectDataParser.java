@@ -13,6 +13,12 @@ public class ProjectDataParser {
         this.controller = new ProjectDataController();
     }
 
+    /**
+     * Sér um að kalla á ProjectDataController sem kallar á api-ið og reynir að logga inn
+     * Byggir síðan upp staðlaðan ResponseWrapper til að skila
+     * @param project
+     * @return
+     */
     public ResponseWrapper login(Project project) {
         try {
             JSONObject ob = new JSONObject();
@@ -30,6 +36,7 @@ public class ProjectDataParser {
                 return new ResponseWrapper(success, message, null);
             } else {
 
+                // búum til Project er JSON response-i
                 String token = projectJSON.getString("token");
                 String name = projectJSON.getString("name");
 
@@ -45,6 +52,12 @@ public class ProjectDataParser {
         return null;
     }
 
+    /**
+     * Sér um að kalla á ProjectDataControllerinn sem reynir að búa til nýtt project.
+     * Út frá svarinu er byggt upp staðlaður ResponseWrapper til að skila
+     * @param project
+     * @return
+     */
     public ResponseWrapper save(Project project){
         try {
             JSONObject ob = new JSONObject();
@@ -52,14 +65,18 @@ public class ProjectDataParser {
             ob.put("token", project.getToken());
             ob.put("name", project.getName());
 
+            // JSON hlutur fæst úr því að reyna búa til nýtt project
             JSONObject response =  this.controller.save(ob);
 
             boolean success = response.getBoolean("success");
             String message = response.getString("message");
+
+            // þurfum ekki að búa til Project hlut ef request-ið gekk ekki
             if (!success) {
                 return new ResponseWrapper(success, message, null);
             }
 
+            // Annars byggjum við upp Project hlut til að skila með í ResponseWrapper-inum
             JSONObject projectJSON = response.getJSONObject("content");
 
             Project projectResponse = new Project();
@@ -73,6 +90,12 @@ public class ProjectDataParser {
         return null;
     }
 
+    /**
+     * Fallið sér um að athuga hvort notandi sé með Cookie sem segir til
+     * um hvort hann sé loggaður inn í project.
+     * Byggir upp staðlaðan ResponseWrapper hlut til að skila út frá svari ProjectDataController
+     * @return
+     */
     public ResponseWrapper checkLogin(){
         try {
             JSONObject response = this.controller.checkLogin();
