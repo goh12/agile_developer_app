@@ -43,8 +43,7 @@ public class ProjectDataController {
         try {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()){
-                JSONObject ret = new JSONObject();
-                ret.put("status", res.body().string());
+                JSONObject ret = new JSONObject(res.body().string());
                 return ret;
             }
 
@@ -73,8 +72,7 @@ public class ProjectDataController {
         try {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()) {
-                JSONObject ret = new JSONObject();
-                ret.put("status", res.body().string());
+                JSONObject ret = new JSONObject(res.body().string());
 
                 Log.e("NETWORKING", ret.getString("status"));
                 return ret;
@@ -100,8 +98,7 @@ public class ProjectDataController {
         try {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()) {
-                JSONObject ret = new JSONObject();
-                ret.put("status", res.body().string());
+                JSONObject ret = new JSONObject(res.body().string());
 
                 Log.e("NETWORKING", ret.getString("status"));
                 return ret;
@@ -118,7 +115,6 @@ public class ProjectDataController {
 
         return null;
     }
-
 
 }
 
