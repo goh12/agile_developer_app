@@ -36,9 +36,9 @@ public class ProjectService {
                 Project project = new Project();  //Setja upp gögnin sem þarf að vinna úr.
                 project.setToken(inputToken);
 
-                final String ret = parser.login(project);  //Kall á DataParser til að vinna úr gögnum
+                final ResponseWrapper res = parser.login(project);  //Kall á DataParser til að vinna úr gögnum
 
-                if(ret.equals("Succsess") ){
+                if(res.getSuccess()) {
                     logInStatus = true;
                 } else {logInStatus = false;}
 
@@ -50,7 +50,7 @@ public class ProjectService {
                      */
                     @Override
                     public void run() {  //Implement run aðferð sem main þráður á að keyra
-                        activity.setText(ret);
+                        activity.afterLogin(res.getSuccess());
                     }
                 });
             }
@@ -94,29 +94,25 @@ public class ProjectService {
     }
 
 
-    public boolean checkLogin(Project project) {
+    public void checkLogin() {
         Thread t = new Thread(new Runnable() {
 
             @Override
             public void run() {
-                final String ret = parser.checkLogin(project);
+                final ResponseWrapper res = parser.checkLogin();
 
-                if(ret.equals("true")){loggedIn = true;}
-                else{ loggedIn = false;}
-
-                final CreateProjectActivity activity = (CreateProjectActivity) context;
+                final LoginActivity activity = (LoginActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        activity.setLoginText(ret);
+                        activity.isLoggedIn(res.getSuccess());
                     }
                 });
             }
         });
 
         t.start();
-        return loggedIn;
     }
 
     public void logout() {

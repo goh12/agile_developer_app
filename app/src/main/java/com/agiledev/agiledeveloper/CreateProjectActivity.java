@@ -22,7 +22,6 @@ public class CreateProjectActivity extends AppCompatActivity {
     private Button backButton;
     private EditText projectName;
     private EditText projectToken;
-    private TextView tempText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class CreateProjectActivity extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.backButton);
         projectName = (EditText) findViewById(R.id.projectNameInput);
         projectToken = (EditText) findViewById(R.id.projectTokenInput);
-        tempText = (TextView) findViewById(R.id.temporaryText);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,20 +66,6 @@ public class CreateProjectActivity extends AppCompatActivity {
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(CreateProjectActivity.this);
             builder.setMessage("Creating project failed")
-                    .setNegativeButton("Retry",null)
-                    .create()
-                    .show();
-        }
-    }
-
-    public void setLoginText(String text) {
-
-        if ( text.equals("true")) {
-            tempText.setText("Logged in");
-
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(CreateProjectActivity.this);
-            builder.setMessage("Log in failed")
                     .setNegativeButton("Retry",null)
                     .create()
                     .show();

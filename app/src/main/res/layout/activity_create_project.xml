@@ -96,11 +96,5 @@
         android:background="@drawable/button"
         android:text="@string/back" />
 
-    <TextView
-        android:id="@+id/temporaryText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
 
 </LinearLayout>

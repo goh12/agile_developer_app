@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
 import com.agiledev.agiledeveloper.entities.Project;
@@ -59,10 +60,12 @@ public class LoginActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    public void setText(String text) {
+    public void afterLogin(boolean success) {
 
-        if (text.equals("Success")) {
-            textView.setText(text);
+        if (success) {
+            textView.setText("Success");
+            Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_LONG).show();
+
             // opna project activity
             Intent intent = new Intent(getBaseContext(), ProjectActivity.class);
             this.startActivity(intent);
@@ -74,6 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                     .create()
                     .show();
         }
+    }
+
+    public void isLoggedIn(boolean success) {
+
     }
 
 }
