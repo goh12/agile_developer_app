@@ -35,25 +35,28 @@ public class ProjectDataParser {
         return null;
     }
 
-    public String save(Project project){
+    public ResponseWrapper save(Project project){
         try {
             JSONObject ob = new JSONObject();
 
-            if (project.getToken() != null) {
-                ob.put("token", project.getToken());
-            } else {
-                return null;
+            ob.put("token", project.getToken());
+            ob.put("name", project.getName());
+
+            JSONObject response =  this.controller.save(ob);
+
+            boolean success = response.getBoolean("success");
+            String message = response.getString("message");
+            if (!success) {
+                return new ResponseWrapper(success, message, null);
             }
 
-            if (project.getName() != null) {
-                ob.put("name", project.getName());
-            } else {
-                return null;
-            }
+            JSONObject projectJSON = response.getJSONObject("content");
 
-            ob = this.controller.save(ob);
-            return ob.getString("status");
+            Project projectResponse = new Project();
+            projectResponse.setName(projectJSON.getString("name"));
+            projectResponse.setToken(projectJSON.getString("token"));
 
+            return new ResponseWrapper(success, message, projectResponse);
         } catch (JSONException e) {
             e.printStackTrace();
         }

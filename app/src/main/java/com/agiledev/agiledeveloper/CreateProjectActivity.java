@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.services.ProjectService;
 
 import org.w3c.dom.Text;
@@ -59,10 +60,10 @@ public class CreateProjectActivity extends AppCompatActivity {
         service.save(name, token);
     }
 
-    public void projectCreated(String text) {
+    public void projectCreated(Project project) {
 
-        if ( text.equals("Project created") ) {
-            Toast.makeText(CreateProjectActivity.this, "Project created", Toast.LENGTH_LONG).show();
+        if ( project != null ) {
+            Toast.makeText(CreateProjectActivity.this, "Project " + project.getName() + " created.", Toast.LENGTH_LONG).show();
             CreateProjectActivity.super.onBackPressed();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(CreateProjectActivity.this);

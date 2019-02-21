@@ -20,4 +20,8 @@ public class Project {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public String toString() {
+        return "Name: " + this.name + ". Token: " + this.token;
+    }
 }

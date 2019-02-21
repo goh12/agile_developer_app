@@ -47,6 +47,7 @@ public class ProjectDataController {
                 return ret;
             }
 
+            Log.e("NETWORKING", res.toString());
             return null;
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,7 +75,6 @@ public class ProjectDataController {
             if (res.isSuccessful()) {
                 JSONObject ret = new JSONObject(res.body().string());
 
-                Log.e("NETWORKING", ret.getString("status"));
                 return ret;
             }
 

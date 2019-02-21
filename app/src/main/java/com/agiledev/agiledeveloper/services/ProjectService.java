@@ -1,11 +1,13 @@
 package com.agiledev.agiledeveloper.services;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.agiledev.agiledeveloper.CreateProjectActivity;
 import com.agiledev.agiledeveloper.LoginActivity;
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
 import com.agiledev.agiledeveloper.dataparsers.ProjectDataParser;
+import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
 import com.agiledev.agiledeveloper.entities.Project;
 
 public class ProjectService {
@@ -67,18 +69,21 @@ public class ProjectService {
                 project.setName(name);
                 project.setToken(token);
 
-                final String ret = parser.save(project);
+                final ResponseWrapper res = parser.save(project);
 
-                if( ret.equals("Project created") || ret.equals("Project already exists") ){
-                    saveStatus = true;
-                } else {saveStatus = false;}
+                Project projectResponse = null;
+                if (res.getSuccess()) {
+                    projectResponse = (Project) res.getContent();
+                    Log.e("TEST", projectResponse.toString());
+                }
 
+                final Project returnValue = projectResponse;
                 final CreateProjectActivity activity = (CreateProjectActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        activity.projectCreated(ret);
+                        activity.projectCreated(returnValue);
                     }
                 });
             }
