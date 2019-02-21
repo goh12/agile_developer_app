@@ -1,12 +1,16 @@
 package com.agiledev.agiledeveloper;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.agiledev.agiledeveloper.services.ProjectService;
+
+import org.w3c.dom.Text;
 
 public class CreateProjectActivity extends AppCompatActivity {
 
@@ -16,6 +20,7 @@ public class CreateProjectActivity extends AppCompatActivity {
     private Button backButton;
     private EditText projectName;
     private EditText projectToken;
+    private TextView tempText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,7 @@ public class CreateProjectActivity extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.backButton);
         projectName = (EditText) findViewById(R.id.projectNameInput);
         projectToken = (EditText) findViewById(R.id.projectTokenInput);
+        tempText = (TextView) findViewById(R.id.temporaryText);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +56,34 @@ public class CreateProjectActivity extends AppCompatActivity {
     public void createProject(String name, String token) {
         // kalla project service hér
         service.save(name, token);
+    }
+
+    public void setSaveText(String text) {
+
+        if ( text.equals("Project created") || text.equals("Project already exists") ) {
+            tempText.setText("Saved");
+
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateProjectActivity.this);
+            builder.setMessage("Saving failed")
+                    .setNegativeButton("Retry",null)
+                    .create()
+                    .show();
+        }
+    }
+
+    public void setLoginText(String text) {
+
+        if ( text.equals("true")) {
+            tempText.setText("Logged in");
+
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateProjectActivity.this);
+            builder.setMessage("Log in failed")
+                    .setNegativeButton("Retry",null)
+                    .create()
+                    .show();
+        }
     }
 
 }

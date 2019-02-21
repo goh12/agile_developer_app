@@ -2,8 +2,8 @@ package com.agiledev.agiledeveloper.services;
 
 import android.content.Context;
 
+import com.agiledev.agiledeveloper.CreateProjectActivity;
 import com.agiledev.agiledeveloper.LoginActivity;
-import com.agiledev.agiledeveloper.ProjectActivity;
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
 import com.agiledev.agiledeveloper.dataparers.ProjectDataParser;
 import com.agiledev.agiledeveloper.entities.Project;
@@ -73,7 +73,7 @@ public class ProjectService {
                     saveStatus = true;
                 } else {saveStatus = false;}
 
-                final ProjectActivity activity = (ProjectActivity) context;
+                final CreateProjectActivity activity = (CreateProjectActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
@@ -99,7 +99,7 @@ public class ProjectService {
                 if(ret.equals("true")){loggedIn = true;}
                 else{ loggedIn = false;}
 
-                final ProjectActivity activity = (ProjectActivity) context;
+                final CreateProjectActivity activity = (CreateProjectActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
