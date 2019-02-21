@@ -72,20 +72,17 @@ public class ProjectDataParser {
         }
         return null;
     }
-    public String checkLogin(){
+
+    public boolean checkLogin(){
         try {
-            JSONObject ob = new JSONObject();
+            JSONObject response = this.controller.checkLogin();
 
-            ob = this.controller.checkLogin();
-            return ob.getString("status");
-
+            return response.getBoolean("success");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
-    }
 
-    public String checkLogin(Project project) {
-        return "false";
+        return false;
     }
+    
 }

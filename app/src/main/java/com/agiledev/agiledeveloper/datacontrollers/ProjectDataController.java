@@ -89,7 +89,10 @@ public class ProjectDataController {
         return null;
     }
 
-
+    /**
+     * Fall sér um að spyrja server hvort client token sé valid til notkunar.
+     * @return JSONObject response
+     */
     public JSONObject checkLogin() {
         Request req = new Request.Builder()
                 .url("https://agiledevhb.herokuapp.com/api/projects/")
@@ -100,7 +103,6 @@ public class ProjectDataController {
             if (res.isSuccessful()) {
                 JSONObject ret = new JSONObject(res.body().string());
 
-                Log.e("NETWORKING", ret.getString("status"));
                 return ret;
             }
 
