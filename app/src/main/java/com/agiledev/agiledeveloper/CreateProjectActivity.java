@@ -61,12 +61,12 @@ public class CreateProjectActivity extends AppCompatActivity {
 
     public void projectCreated(String text) {
 
-        if ( text.equals("Project created") || text.equals("Project already exists") ) {
+        if ( text.equals("Project created") ) {
             Toast.makeText(CreateProjectActivity.this, "Project created", Toast.LENGTH_LONG).show();
             CreateProjectActivity.super.onBackPressed();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(CreateProjectActivity.this);
-            builder.setMessage("Saving failed")
+            builder.setMessage("Creating project failed")
                     .setNegativeButton("Retry",null)
                     .create()
                     .show();
