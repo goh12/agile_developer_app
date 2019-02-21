@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.agiledev.agiledeveloper.services.ProjectService;
+
 public class ProjectActivity extends AppCompatActivity {
+
+    ProjectService service = null;
 
     private Button createButton;
     private Button backButton;
@@ -18,6 +22,7 @@ public class ProjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
+        this.service = new ProjectService(this);
 
         createButton = (Button) findViewById(R.id.createButton);
         backButton = (Button) findViewById(R.id.backButton);
@@ -45,8 +50,7 @@ public class ProjectActivity extends AppCompatActivity {
 
     public void createProject(String name, String token) {
         // kalla project service hér
-        Log.d("hehe", name);
-        Log.d("hehetoken", token);
+        service.save(name, token);
     }
 
 }

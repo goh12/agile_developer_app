@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.agiledev.agiledeveloper.LoginActivity;
+import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
 import com.agiledev.agiledeveloper.dataparers.ProjectDataParser;
 import com.agiledev.agiledeveloper.entities.Project;
 
@@ -30,7 +31,7 @@ public class ProjectService {
                 Project project = new Project();  //Setja upp gögnin sem þarf að vinna úr.
                 project.setToken(inputToken);
 
-                final String ret = parser.testLogin(project);  //Kall á DataParser til að vinna úr gögnum
+                final String ret = parser.login(project);  //Kall á DataParser til að vinna úr gögnum
 
                 final LoginActivity activity = (LoginActivity) context;
                 activity.runOnUiThread(new Runnable() {
@@ -49,4 +50,13 @@ public class ProjectService {
         t.start(); //Keyrum þráðinn.
     }
 
+    public String save(String name, String token) {
+
+        return null;
+    }
+
+
+    public void logout() {
+        Networking.clearCookies();
+    }
 }
