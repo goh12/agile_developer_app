@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void setText(String text) {
 
-        if (text == "success") {
+        if (text.equals("Success")) {
             textView.setText(text);
 
         } else {
