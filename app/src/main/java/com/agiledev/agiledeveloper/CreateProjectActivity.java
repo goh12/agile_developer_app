@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.services.ProjectService;
 
@@ -58,11 +59,11 @@ public class CreateProjectActivity extends AppCompatActivity {
         service.save(name, token);
     }
 
-    public void setSaveText(String text) {
+    public void projectCreated(String text) {
 
         if ( text.equals("Project created") || text.equals("Project already exists") ) {
-            tempText.setText("Saved");
-
+            Toast.makeText(CreateProjectActivity.this, "Project created", Toast.LENGTH_LONG).show();
+            CreateProjectActivity.super.onBackPressed();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(CreateProjectActivity.this);
             builder.setMessage("Saving failed")

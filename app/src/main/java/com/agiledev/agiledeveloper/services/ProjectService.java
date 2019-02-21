@@ -78,7 +78,7 @@ public class ProjectService {
 
                     @Override
                     public void run() {
-                        activity.setSaveText(ret);
+                        activity.projectCreated(ret);
                     }
                 });
             }
