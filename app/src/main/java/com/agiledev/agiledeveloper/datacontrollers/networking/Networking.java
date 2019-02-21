@@ -11,6 +11,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 
 public class Networking {
+
     private static OkHttpClient client;
     private static ClearableCookieJar cookieJar;
 

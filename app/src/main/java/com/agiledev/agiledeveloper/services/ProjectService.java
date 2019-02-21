@@ -14,17 +14,22 @@ public class ProjectService {
 
     Context context;
     ProjectDataParser parser;
-    private boolean logInStatus;
-    private boolean saveStatus;
-    private boolean loggedIn;
 
+    /**
+     * Constructor
+     * @param context Activity notar þetta service.
+     */
     public ProjectService(Context context) {
         this.context = context;
         this.parser = new ProjectDataParser();
     }
 
-
-    public boolean login(String inputToken) { //Prufu og sýnifall
+    /**
+     * Setur upp nýtt async kall til að logga inn notanda á server.
+     * @param inputToken token fyrir verkefnið.
+     * @return boolean hvort login hafi tekist
+     */
+    public void login(String inputToken) { //Prufu og sýnifall
         Thread t = new Thread(new Runnable() { //Búa til nýjan þráð. (Net köll mega ekki vera á main þráð.)
             /*
                 Það er bannað að gera networking á UserInterfaceThread í android appinu. Þessvegna þurfum
@@ -37,10 +42,6 @@ public class ProjectService {
                 project.setToken(inputToken);
 
                 final ResponseWrapper res = parser.login(project);  //Kall á DataParser til að vinna úr gögnum
-
-                if(res.getSuccess()) {
-                    logInStatus = true;
-                } else {logInStatus = false;}
 
                 final LoginActivity activity = (LoginActivity) context;
                 activity.runOnUiThread(new Runnable() {
@@ -57,10 +58,14 @@ public class ProjectService {
         });
 
         t.start(); //Keyrum þráðinn.
-        return logInStatus;
     }
 
-    public boolean save(String name, String token) {
+    /**
+     * Býr til nýtt async kall sem býr til project á server.
+     * @param name nafn á project
+     * @param token token á project.
+     */
+    public void save(String name, String token) {
         Thread t = new Thread(new Runnable() {
 
             @Override
@@ -90,10 +95,11 @@ public class ProjectService {
         });
 
         t.start();
-        return saveStatus;
     }
 
-
+    /**
+     * Býr til nýtt async kall á server til að tékka hvort notandi sé innskráður.
+     */
     public void checkLogin() {
         Thread t = new Thread(new Runnable() {
 
