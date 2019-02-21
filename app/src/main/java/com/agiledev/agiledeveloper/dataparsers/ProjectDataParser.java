@@ -13,22 +13,32 @@ public class ProjectDataParser {
         this.controller = new ProjectDataController();
     }
 
-    public String login(Project project) {
+    public ResponseWrapper login(Project project) {
         try {
             JSONObject ob = new JSONObject();
 
-
-            if (project.getToken() != null) {
-                ob.put("token", project.getToken());
-            } else {
-                return "Failure, no token passed";
-            }
+            ob.put("token", project.getToken());
 
             ob = this.controller.login(ob);
-            if (ob == null) {
-                return "Networking failure occurred";
+
+            boolean success = ob.getBoolean("success");
+            String message = ob.getString("message");
+            JSONObject projectJSON = ob.getJSONObject("content");
+
+            // ef ekki success þurfum við ekki að parse-a project hlutinn
+            if (!success) {
+                return new ResponseWrapper(success, message, null);
+            } else {
+
+                String token = projectJSON.getString("token");
+                String name = projectJSON.getString("name");
+
+                Project loggedInProject = new Project();
+                loggedInProject.setName(name);
+                loggedInProject.setToken(token);
+
+                return new ResponseWrapper(success, message, loggedInProject);
             }
-            return ob.getString("status");
         } catch (JSONException e) {
             e.printStackTrace();
         }
