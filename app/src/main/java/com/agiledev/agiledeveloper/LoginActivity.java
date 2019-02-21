@@ -4,17 +4,14 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.services.ProjectService;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -58,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void createProject() {
-        Intent intent = new Intent(getBaseContext(), ProjectActivity.class);
+        Intent intent = new Intent(getBaseContext(), CreateProjectActivity.class);
         this.startActivity(intent);
     }
 
@@ -66,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if (text.equals("Success")) {
             textView.setText(text);
+            // opna project activity
+            Intent intent = new Intent(getBaseContext(), ProjectActivity.class);
+            this.startActivity(intent);
 
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
