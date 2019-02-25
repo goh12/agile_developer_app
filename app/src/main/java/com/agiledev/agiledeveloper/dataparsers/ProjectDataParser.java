@@ -29,13 +29,12 @@ public class ProjectDataParser {
 
             boolean success = ob.getBoolean("success");
             String message = ob.getString("message");
-            JSONObject projectJSON = ob.getJSONObject("content");
 
             // ef ekki success þurfum við ekki að parse-a project hlutinn
             if (!success) {
                 return new ResponseWrapper(success, message, null);
             } else {
-
+                JSONObject projectJSON = ob.getJSONObject("content");
                 // búum til Project er JSON response-i
                 String token = projectJSON.getString("token");
                 String name = projectJSON.getString("name");

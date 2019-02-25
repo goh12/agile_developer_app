@@ -43,7 +43,9 @@ public class ProjectDataController {
         try {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()){
-                JSONObject ret = new JSONObject(res.body().string());
+                String jsonString = res.body().string();
+                Log.e("NETWORKING", res.header("Set-Cookie"));
+                JSONObject ret = new JSONObject(jsonString);
                 return ret;
             }
 
@@ -101,7 +103,9 @@ public class ProjectDataController {
         try {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()) {
-                JSONObject ret = new JSONObject(res.body().string());
+                String jsonResponse = res.body().string();
+                Log.w("JSON", jsonResponse);
+                JSONObject ret = new JSONObject(jsonResponse);
 
                 return ret;
             }
