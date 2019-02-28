@@ -3,7 +3,6 @@ package com.agiledev.agiledeveloper.datacontrollers;
 
 import android.util.Log;
 
-import com.agiledev.agiledeveloper.LoginActivity;
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
 
 import org.json.JSONException;
@@ -18,7 +17,6 @@ import okhttp3.Response;
 
 public class ProjectDataController {
     private OkHttpClient client;  //OkHttpClient singleton.
-    private LoginActivity act;
 
     /**
      * Constructor, fetches singleton OkHttpClient.
