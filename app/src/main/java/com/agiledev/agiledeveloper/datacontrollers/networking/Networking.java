@@ -11,6 +11,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 
 public class Networking {
+    private Networking() {};
 
     private static OkHttpClient client;
     private static ClearableCookieJar cookieJar;
@@ -22,8 +23,12 @@ public class Networking {
      * @return
      */
     public static OkHttpClient getClient() {
+        if (client == null)
+            throw new IllegalStateException("Networking.setup() should have been called at app initialisation");
+
         return client;
     }
+
 
     /**
      * Setup OkHttpClient singleton and cookie jar.

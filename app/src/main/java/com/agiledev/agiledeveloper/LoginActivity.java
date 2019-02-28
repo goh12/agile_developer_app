@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void afterLogin(boolean success) {
-
         if (success) {
             textView.setText("Success");
             Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_LONG).show();
