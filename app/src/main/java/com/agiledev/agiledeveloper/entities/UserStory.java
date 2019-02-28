@@ -4,14 +4,24 @@ import java.util.Date;
 import java.util.List;
 
 public class UserStory {
+    private final long id;
+
     private String author;
     private String textContent;
+
+    private int priority;
+    private int planningPokerPriority;
 
     private List<PriorityEstimate> priorityEstimates;
     private List<PlanningPokerEstimate> planningPokerEstimates;
 
     private Date created;
 
+    public UserStory(long id) {
+        this.id = id;
+    }
+
+    public long getId() { return id; }
 
     public String getAuthor() {
         return author;
@@ -51,5 +61,19 @@ public class UserStory {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public int getPriority() { return priority; }
+
+    public void setPriority(int priority) { this.priority = priority; }
+
+    public int getPlanningPokerPriority() { return planningPokerPriority; }
+
+    public void setPlanningPokerPriority(int planningPokerPriority) {
+        this.planningPokerPriority = planningPokerPriority;
+    }
+
+    public long getProjectId() {
+        return this.id;
     }
 }
