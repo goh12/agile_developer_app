@@ -65,7 +65,7 @@ public class ProjectService {
      * @param name nafn á project
      * @param token token á project.
      */
-    public void save(String name, String token) {
+    public void create(String name, String token) {
         Thread t = new Thread(new Runnable() {
 
             @Override

@@ -65,7 +65,7 @@ public class ProjectDataController {
      * @param json { name, token }
      * @return json Response body, null if failure.
      */
-    public JSONObject save(JSONObject json) {
+    public JSONObject create(JSONObject json) {
         RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
         Request req = new Request.Builder()
                 .url("https://agiledevhb.herokuapp.com/api/projects/create")

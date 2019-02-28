@@ -65,7 +65,7 @@ public class ProjectDataParser {
             ob.put("name", project.getName());
 
             // JSON hlutur fæst úr því að reyna búa til nýtt project
-            JSONObject response =  this.controller.save(ob);
+            JSONObject response =  this.controller.create(ob);
 
             boolean success = response.getBoolean("success");
             String message = response.getString("message");

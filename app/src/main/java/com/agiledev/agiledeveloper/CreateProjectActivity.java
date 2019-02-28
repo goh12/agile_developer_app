@@ -6,13 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.services.ProjectService;
-
-import org.w3c.dom.Text;
 
 public class CreateProjectActivity extends AppCompatActivity {
 
@@ -55,7 +52,7 @@ public class CreateProjectActivity extends AppCompatActivity {
 
     public void createProject(String name, String token) {
         // kalla project service hér
-        service.save(name, token);
+        service.create(name, token);
     }
 
     public void projectCreated(Project project) {
