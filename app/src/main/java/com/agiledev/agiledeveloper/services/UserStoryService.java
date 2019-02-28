@@ -3,15 +3,19 @@ package com.agiledev.agiledeveloper.services;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.agiledev.agiledeveloper.CreateProjectActivity;
 import com.agiledev.agiledeveloper.LoginActivity;
+import com.agiledev.agiledeveloper.ProjectActivity;
 import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
 import com.agiledev.agiledeveloper.dataparsers.ProjectDataParser;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
 import com.agiledev.agiledeveloper.dataparsers.UserStoryDataParser;
 import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.entities.UserStory;
+
+import java.util.List;
 
 public class UserStoryService {
 
@@ -119,13 +123,18 @@ public class UserStoryService {
             public void run() {
 
                 final ResponseWrapper res = parser.getAll();
-                final UserStoryDisplayActivity activity = (UserStoryDisplayActivity) context;
+                final ProjectActivity activity = (ProjectActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        //activity.afterReturningAll(res.getContent());
+                        if (res.getSuccess()) {
+                            activity.displayUserStories((List<UserStory>) res.getContent());
+                        } else {
+                            activity.displayUserStories(null);
+                        }
+
                     }
                 });
             }

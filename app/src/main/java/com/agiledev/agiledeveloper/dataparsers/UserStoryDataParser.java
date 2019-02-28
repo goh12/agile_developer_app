@@ -1,4 +1,6 @@
 package com.agiledev.agiledeveloper.dataparsers;
+import android.util.Log;
+
 import com.agiledev.agiledeveloper.datacontrollers.*;
 import com.agiledev.agiledeveloper.entities.*;
 
@@ -6,6 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Arrays;
@@ -93,31 +99,36 @@ public class UserStoryDataParser {
 
             JSONArray content = response.getJSONArray("content");
 
-            UserStory[] userStories = new UserStory[content.length()];
+            ArrayList<UserStory> userStories = new ArrayList<>();
             for(int i = 0; i<content.length(); i++){
-                userStories[i] = JSONtoUS(content.getJSONObject(i));
+                userStories.add(JSONtoUS(content.getJSONObject(i)));
             }
 
-
+            return new ResponseWrapper(true, "Success", userStories);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+
+        return new ResponseWrapper(false, "Fetching user stories failed", null);
     }
 
     private UserStory JSONtoUS(JSONObject userStoryJSON){
         try{
+
+            //Format: 2019-02-21T16:51:04.689+0000
+            SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-M-dd'T'kk:mm:ss");
             // Set variables
+            Log.e("TRASG", userStoryJSON.toString());
             UserStory us = new UserStory(userStoryJSON.getLong("id"));
             us.setAuthor(userStoryJSON.getString("author"));
             us.setTextContent(userStoryJSON.getString("textContent"));
             us.setPriority(userStoryJSON.getInt("priority"));
             us.setPlanningPokerPriority(userStoryJSON.getInt("planningPokerPriority"));
-            us.setCreated(new Date(userStoryJSON.getString("created")));
+            us.setCreated(dateFormat.parse(userStoryJSON.getString("created")));
 
             // Create JSON array for each estimate array
             JSONArray priorityEstimates = userStoryJSON.getJSONArray("priorityEstimates");
-            JSONArray planningPokerPriority = userStoryJSON.getJSONArray("planningPokerPriority");
+            JSONArray planningPokerPriority = userStoryJSON.getJSONArray("planningPokerEstimates");
 
             // Create empty arrays for storing estimates
             PriorityEstimate[] arrayEstimates = new PriorityEstimate[priorityEstimates.length()];
@@ -153,6 +164,8 @@ public class UserStoryDataParser {
             us.setPriorityEstimates(prioEstimates);
             return us;
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return  null;

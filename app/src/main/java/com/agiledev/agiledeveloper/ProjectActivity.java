@@ -45,14 +45,15 @@ import com.agiledev.agiledeveloper.services.ProjectService;
 
 public class ProjectActivity extends AppCompatActivity {
 
+    UserStoryService userStoryService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
 
-        UserStoryService s = new UserStoryService(this);
-        
+        this.userStoryService = new UserStoryService(this);
+        this.userStoryService.getAll();
 
         ((Button) findViewById(R.id.logoutbutton)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +64,18 @@ public class ProjectActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    public void displayUserStories(List<UserStory> stories) {
+        if(stories == null) {
+
+            return;
+        }
+
+        ListView lView = (ListView) findViewById(R.id.userStoryListView);
+        UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
+        lView.setAdapter(adapter);
     }
 
     public void debugToast() {
