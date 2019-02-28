@@ -74,7 +74,7 @@ public class ProjectService {
                 project.setName(name);
                 project.setToken(token);
 
-                final ResponseWrapper res = parser.save(project);
+                final ResponseWrapper res = parser.create(project);
 
                 Project projectResponse = null;
                 if (res.getSuccess()) {
