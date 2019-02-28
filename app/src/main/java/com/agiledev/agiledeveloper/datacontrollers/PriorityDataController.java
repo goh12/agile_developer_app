@@ -1,4 +1,5 @@
 package com.agiledev.agiledeveloper.datacontrollers;
+
 import android.util.Log;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
@@ -13,20 +14,19 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class UserStoryDataController {
+public class PriorityDataController {
 
     private OkHttpClient client;  //OkHttpClient singleton.
 
     /**
      * Constructor, fetches singleton OkHttpClient.
      */
-    public UserStoryDataController() {
+    public PriorityDataController() {
         client = Networking.getClient();
     }
 
-
     /**
-     * Sér um að senda request á server sem býr til nýja notendasögu
+     * Sér um að senda request á server sem býr til nýtt priority estimate
      * @param json
      * @return
      */
@@ -34,7 +34,7 @@ public class UserStoryDataController {
 
         RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
         Request req = new Request.Builder()
-                .url("https://agiledevhb.herokuapp.com/api/userstory/create")
+                .url("https://agiledevhb.herokuapp.com/api/priority/estimate")
                 .post(body)
                 .build();
 
@@ -59,40 +59,15 @@ public class UserStoryDataController {
     }
 
     /**
-     * Sendir patch request til að uppfæra eina notendasögu á server
+     * Sér um að senda delete request á server til að eyða priority estimate
      * @param json
      * @return
      */
-    public JSONObject update(JSONObject json) {
-
-        RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
-        Request req = new Request.Builder()
-                .url("https://agiledevhb.herokuapp.com/api/userstory/edit")
-                .patch(body)
-                .build();
-
-        try {
-            Response res = client.newCall(req).execute();
-            if (res.isSuccessful()) {
-                String jsonString = res.body().string();
-
-                JSONObject ret = new JSONObject(jsonString);
-                return ret;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            Log.e("NETWORKING", "Failed to parse JSON response");
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     public JSONObject delete(JSONObject json) {
+
         RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
         Request req = new Request.Builder()
-                .url("https://agiledevhb.herokuapp.com/api/userstory/delete")
+                .url("https://agiledevhb.herokuapp.com/api/priority/delete")
                 .delete(body)
                 .build();
 
@@ -111,35 +86,4 @@ public class UserStoryDataController {
         }
         return null;
     }
-
-    /**
-     * Biður server um að sækja allar user stories
-     * sem tilheyra projectinu sem notandi er loggaður inn á
-     * @return
-     */
-    public  JSONObject getAll() {
-
-        Request req = new Request.Builder()
-                .url("https://agiledevhb.herokuapp.com//api/userstories")
-                .get()
-                .build();
-
-        try {
-            Response res = client.newCall(req).execute();
-
-            if (res.isSuccessful()) {
-                String jsonString = res.body().string();
-
-                JSONObject ret = new JSONObject(jsonString);
-                return ret;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            Log.e("NETWORKING", "Failed to parse JSON response");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 }

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Agile Developer</string>
+    <string name="create_project">Create project</string>
+    <string name="login">Login</string>
+    <string name="title_activity_project">ProjectActivity</string>
+    <string name="back">Back</string>
+    <string name="create">Create</string>
+    <string name="make_it_hard_to_guess">Make it hard to guess</string>
+    <string name="enter_name">Enter name</string>
+    <string name="project_name">Project name:</string>
+    <string name="project_token">Project token:</string>
+</resources>

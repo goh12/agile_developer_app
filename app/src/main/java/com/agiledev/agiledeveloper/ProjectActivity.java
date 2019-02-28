@@ -51,14 +51,8 @@ public class ProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
 
-        UserStoryService s = new UserStoryService();
-
-        List<UserStory> ls = s.getAll();
-
-        UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, ls);
-
-        ListView listView = (ListView) findViewById(R.id.userStoryListView);
-        listView.setAdapter(adapter);
+        UserStoryService s = new UserStoryService(this);
+        
 
         ((Button) findViewById(R.id.logoutbutton)).setOnClickListener(new View.OnClickListener() {
             @Override
