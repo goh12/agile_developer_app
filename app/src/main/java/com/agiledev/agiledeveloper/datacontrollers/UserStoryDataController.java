@@ -1,8 +1,4 @@
 package com.agiledev.agiledeveloper.datacontrollers;
-
-<<<<<<< HEAD
-public class UserStoryDataController {
-=======
 import android.util.Log;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
@@ -18,6 +14,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class UserStoryDataController {
+
     private OkHttpClient client;  //OkHttpClient singleton.
 
     /**
@@ -144,5 +141,5 @@ public class UserStoryDataController {
         }
         return null;
     }
->>>>>>> abeb9e3400f7bbeabb8dd46a872d18f025e87ad0
+
 }
