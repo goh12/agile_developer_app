@@ -10,7 +10,8 @@
         android:id="@+id/logoutbutton"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="LOGOUT"/>
+        android:text="LOGOUT"
+        android:background="@drawable/button"/>
 
     <LinearLayout
         android:layout_width="match_parent"
