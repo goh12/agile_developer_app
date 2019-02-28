@@ -105,7 +105,7 @@ public class UserStoryDataParser {
         return null;
     }
 
-    public UserStory JSONtoUS(JSONObject userStoryJSON){
+    private UserStory JSONtoUS(JSONObject userStoryJSON){
         try{
             // Set variables
             UserStory us = new UserStory(userStoryJSON.getLong("id"));

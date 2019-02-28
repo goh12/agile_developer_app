@@ -5,15 +5,17 @@ import android.util.Log;
 
 import com.agiledev.agiledeveloper.CreateProjectActivity;
 import com.agiledev.agiledeveloper.LoginActivity;
+import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
 import com.agiledev.agiledeveloper.dataparsers.ProjectDataParser;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
+import com.agiledev.agiledeveloper.dataparsers.UserStoryDataParser;
 import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.entities.UserStory;
 
 public class UserStoryService {
 
     Context context;
-    ProjectDataParser parser;
+    UserStoryDataParser parser;
 
     /**
      * Constructor
@@ -21,7 +23,7 @@ public class UserStoryService {
      */
     public UserStoryService(Context context) {
         this.context = context;
-        this.parser = new UserStoryParser();
+        this.parser = new UserStoryDataParser();
     }
 
     public void create(UserStory userStory) {
@@ -44,7 +46,7 @@ public class UserStoryService {
 
                     @Override
                     public void run() {
-                        activity.afterSaving(returnValue);
+                        //activity.afterSaving(returnValue);
                     }
                 });
             }
@@ -70,7 +72,8 @@ public class UserStoryService {
 
                     @Override
                     public void run() {
-                        activity.afterDeleting(res.getSuccess());
+
+                        //activity.afterDeleting(res.getSuccess());
                     }
                 });
             }
@@ -85,7 +88,7 @@ public class UserStoryService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.uppdate(userStory);
+                final ResponseWrapper res = parser.update(userStory);
 
                 UserStory UserStoryResponse = null;
                 if (res.getSuccess()) {
@@ -99,7 +102,7 @@ public class UserStoryService {
 
                     @Override
                     public void run() {
-                        activity.afterSaving(res.getSuccess());
+                        //activity.afterSaving(res.getSuccess());
                     }
                 });
             }
@@ -121,7 +124,7 @@ public class UserStoryService {
 
                     @Override
                     public void run() {
-                        activity.afterReturningAll(res.getContent());
+                        //activity.afterReturningAll(res.getContent());
                     }
                 });
             }
