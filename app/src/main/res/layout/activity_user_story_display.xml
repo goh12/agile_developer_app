@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:id="@+id/display_userstory_textContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices lacus et ante porta pretium. Praesent lobortis velit ut quam facilisis viverra quis id urna. Nullam et leo sodales arcu hendrerit congue vel et sem."
+        android:textColor="#333333"
+        android:textAlignment="center"
+        android:background="@drawable/userstory_content_background"
+        android:textSize="16dp"
+        />
+
+    <TextView
+        android:id="@+id/display_userstory_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Author: Flubber"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textColor="#444444"
+    />
+
+</LinearLayout>

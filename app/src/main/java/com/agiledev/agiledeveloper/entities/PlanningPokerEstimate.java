@@ -1,6 +1,8 @@
 package com.agiledev.agiledeveloper.entities;
 
-public class PlanningPokerEstimate {
+import java.io.Serializable;
+
+public class PlanningPokerEstimate implements Serializable {
     private final int id;
     private int estimate;
     private String explanation;

@@ -1,10 +1,11 @@
 package com.agiledev.agiledeveloper.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class UserStory {
-    private final long id;
+public class UserStory implements Serializable {
+    private long id;
 
     private String author;
     private String textContent;
@@ -12,11 +13,13 @@ public class UserStory {
     private int priority;
     private int planningPokerPriority;
 
+
     private List<PriorityEstimate> priorityEstimates;
     private List<PlanningPokerEstimate> planningPokerEstimates;
 
     private Date created;
 
+    public UserStory() {}
     public UserStory(long id) {
         this.id = id;
     }

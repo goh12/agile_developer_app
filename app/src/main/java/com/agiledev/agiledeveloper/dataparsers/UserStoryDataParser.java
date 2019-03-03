@@ -26,7 +26,10 @@ public class UserStoryDataParser {
     public ResponseWrapper create(UserStory userStory) {
         try {
 
-            JSONObject ob = UStoJSON(userStory);
+            JSONObject ob = new JSONObject();
+            ob.put("textContent", userStory.getTextContent());
+            ob.put("author", userStory.getAuthor());
+
             JSONObject response =  this.controller.create(ob);
 
             boolean success = response.getBoolean("success");
@@ -116,12 +119,13 @@ public class UserStoryDataParser {
         try{
 
             //Format: 2019-02-21T16:51:04.689+0000
-            SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-M-dd'T'kk:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
             // Set variables
             Log.e("TRASG", userStoryJSON.toString());
             UserStory us = new UserStory(userStoryJSON.getLong("id"));
             us.setAuthor(userStoryJSON.getString("author"));
             us.setTextContent(userStoryJSON.getString("textContent"));
+
             us.setPriority(userStoryJSON.getInt("priority"));
             us.setPlanningPokerPriority(userStoryJSON.getInt("planningPokerPriority"));
             us.setCreated(dateFormat.parse(userStoryJSON.getString("created")));
@@ -174,6 +178,7 @@ public class UserStoryDataParser {
 
     private JSONObject UStoJSON(UserStory userStory) {
         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
             JSONObject ob = new JSONObject();
 
             ob.put("id", userStory.getId());
@@ -181,7 +186,8 @@ public class UserStoryDataParser {
             ob.put("textContent", userStory.getTextContent());
             ob.put("projectId", userStory.getProjectId());
             ob.put("priority", userStory.getPriority());
-            ob.put("created", userStory.getCreated());
+            ob.put("planningPokerPriority", userStory.getPlanningPokerPriority());
+            ob.put("created", dateFormat.format(userStory.getCreated()));
 
             return ob;
         } catch (JSONException e) {

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
-import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.services.ProjectService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -100,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        Toast.makeText(LoginActivity.this, "Checking on server.", Toast.LENGTH_SHORT).show();
         loginLayout.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         ProjectService service = new ProjectService(this);

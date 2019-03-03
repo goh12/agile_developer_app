@@ -1,35 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/project_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProjectActivity">
+    android:orientation="vertical"
+    tools:context=".ProjectActivity"
+    android:padding="10dp"
+    >
 
-    <Button
-        android:id="@+id/logoutbutton"
+    <ListView
+        android:id="@+id/userStoryListView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="LOGOUT"
-        android:background="@drawable/button"/>
+        android:layout_height="wrap_content">
+    </ListView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ListView
-
-            android:id="@+id/userStoryListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="0dp">
-        </ListView>
-
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

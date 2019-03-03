@@ -3,16 +3,12 @@ package com.agiledev.agiledeveloper.services;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ListView;
 
-import com.agiledev.agiledeveloper.CreateProjectActivity;
-import com.agiledev.agiledeveloper.LoginActivity;
 import com.agiledev.agiledeveloper.ProjectActivity;
 import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
-import com.agiledev.agiledeveloper.dataparsers.ProjectDataParser;
+import com.agiledev.agiledeveloper.UserStoryEditActivity;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
 import com.agiledev.agiledeveloper.dataparsers.UserStoryDataParser;
-import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.entities.UserStory;
 
 import java.util.List;
@@ -38,20 +34,13 @@ public class UserStoryService {
             public void run() {
 
                 final ResponseWrapper res = parser.create(userStory);
-                UserStory UserStoryResponse = null;
 
-                if (res.getSuccess()) {
-                    UserStoryResponse = (UserStory) res.getContent();
-                    Log.e("TEST", UserStoryResponse.toString());
-                }
-
-                final UserStory returnValue = UserStoryResponse;
-                final UserStoryDisplayActivity activity = (UserStoryDisplayActivity) context;
+                final UserStoryEditActivity activity = (UserStoryEditActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        //activity.afterSaving(returnValue);
+                        activity.userStoryCreated(res.getSuccess(), res.getMessage());
                     }
                 });
             }
@@ -60,6 +49,10 @@ public class UserStoryService {
         t.start();
     }
 
+    /**
+     * Eyðir User story
+     * @param userStory
+     */
     public void delete(UserStory userStory) {
         Thread t = new Thread(new Runnable() {
 
@@ -77,8 +70,7 @@ public class UserStoryService {
 
                     @Override
                     public void run() {
-
-                        //activity.afterDeleting(res.getSuccess());
+                        activity.userStoryDeleted(res.getSuccess(), res.getMessage());
                     }
                 });
             }
@@ -87,7 +79,11 @@ public class UserStoryService {
         t.start();
     }
 
-    public void uppdate(UserStory userStory) {
+    /**
+     * Uppfærir userstory
+     * @param userStory
+     */
+    public void update(UserStory userStory) {
         Thread t = new Thread(new Runnable() {
 
             @Override
@@ -102,12 +98,12 @@ public class UserStoryService {
                 }
 
                 final UserStory returnValue = UserStoryResponse;
-                final UserStoryDisplayActivity activity = (UserStoryDisplayActivity) context;
+                final UserStoryEditActivity activity = (UserStoryEditActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        //activity.afterSaving(res.getSuccess());
+                        activity.userStoryUpdated(res.getSuccess(), res.getMessage());
                     }
                 });
             }
@@ -116,6 +112,9 @@ public class UserStoryService {
         t.start();
     }
 
+    /**
+     * Nær í allar user stories fyrir project.
+     */
     public void getAll() {
         Thread t = new Thread(new Runnable() {
 

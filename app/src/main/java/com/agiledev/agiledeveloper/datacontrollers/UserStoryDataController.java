@@ -78,6 +78,10 @@ public class UserStoryDataController {
 
                 JSONObject ret = new JSONObject(jsonString);
                 return ret;
+            } else {
+                String jsonString = res.body().string();
+                Log.e("UPDATE", jsonString);
+                return new JSONObject(jsonString);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,6 +93,11 @@ public class UserStoryDataController {
         return null;
     }
 
+    /**
+     * Sér um HTTP request til að eyða user story.
+     * @param json
+     * @return
+     */
     public JSONObject delete(JSONObject json) {
         RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
         Request req = new Request.Builder()

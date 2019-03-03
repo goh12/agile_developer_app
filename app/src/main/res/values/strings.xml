@@ -9,4 +9,9 @@
     <string name="enter_name">Enter name</string>
     <string name="project_name">Project name:</string>
     <string name="project_token">Project token:</string>
+    <string name="title_activity_user_story_display">UserStoryDisplayActivity</string>
+    <string name="userstory_edit_label_content">Content:</string>
+    <string name="userstory_edit_label_author">Author:</string>
+    <string name="userstory_edit_label_button_create">Create</string>
+    <string name="userstory_edit_label_button_edit">Edit</string>
 </resources>

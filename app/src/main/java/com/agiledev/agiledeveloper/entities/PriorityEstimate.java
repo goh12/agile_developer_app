@@ -1,6 +1,8 @@
 package com.agiledev.agiledeveloper.entities;
 
-public class PriorityEstimate {
+import java.io.Serializable;
+
+public class PriorityEstimate implements Serializable {
     private final int id;
     private int estimate;
     private String explanation;

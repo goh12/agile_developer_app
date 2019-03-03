@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".UserStoryEditActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/userstory_edit_label_content"
+        android:textColor="#333333"/>
+
+    <EditText
+        android:id="@+id/userstory_edit_textContent"
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineHeight="48dp"
+        android:minLines="2"
+        android:background="@drawable/userstory_content_background"
+        android:textColor="#444444"
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/userstory_edit_label_author"
+        android:textColor="#333333"/>
+
+    <EditText
+        android:id="@+id/userstory_edit_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineHeight="48dp"
+        android:minLines="1"
+        android:maxLines="1"
+        android:textColor="#444444"
+        android:background="@drawable/userstory_content_background"
+    />
+
+    <Button
+        android:id="@+id/userstory_edit_button"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:padding="10dp"
+        android:background="@drawable/button"
+        android:layout_gravity="center_horizontal">
+    </Button>
+
+
+</LinearLayout>
