@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             // opna project activity
             Intent intent = new Intent(getBaseContext(), ProjectActivity.class);
             this.startActivity(intent);
+            finish();
 
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
