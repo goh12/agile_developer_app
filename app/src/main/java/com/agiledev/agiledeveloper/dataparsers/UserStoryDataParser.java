@@ -121,7 +121,6 @@ public class UserStoryDataParser {
             //Format: 2019-02-21T16:51:04.689+0000
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
             // Set variables
-            Log.e("TRASG", userStoryJSON.toString());
             UserStory us = new UserStory(userStoryJSON.getLong("id"));
             us.setAuthor(userStoryJSON.getString("author"));
             us.setTextContent(userStoryJSON.getString("textContent"));
@@ -134,38 +133,33 @@ public class UserStoryDataParser {
             JSONArray priorityEstimates = userStoryJSON.getJSONArray("priorityEstimates");
             JSONArray planningPokerPriority = userStoryJSON.getJSONArray("planningPokerEstimates");
 
-            // Create empty arrays for storing estimates
-            PriorityEstimate[] arrayEstimates = new PriorityEstimate[priorityEstimates.length()];
-            PlanningPokerEstimate[] arrayPlanningPokerEsitmates =
-                    new PlanningPokerEstimate[planningPokerPriority.length()];
 
             // Populate priority estimates array
+            ArrayList<PriorityEstimate> priorityEstimatesList = new ArrayList<>();
             for(int i = 0; i<priorityEstimates.length(); i++){
                 JSONObject priorityEsimate = priorityEstimates.getJSONObject(i);
                 PriorityEstimate estimate =
                         new PriorityEstimate(priorityEsimate.getInt("id"));
                 estimate.setEstimate(priorityEsimate.getInt("estimate"));
                 estimate.setExplanation(priorityEsimate.getString("explanation"));
-                arrayEstimates[i] = estimate;
+                priorityEstimatesList.add(estimate);
             }
 
             // Populate PlanningPokerEstimates array
+            ArrayList<PlanningPokerEstimate> planningPokerEstimatesList = new ArrayList<>();
             for(int i = 0; i<planningPokerPriority.length(); i++){
+
                 JSONObject planningPokerPriorityEsimate = planningPokerPriority.getJSONObject(i);
                 PlanningPokerEstimate estimate =
                         new PlanningPokerEstimate(planningPokerPriorityEsimate.getInt("id"));
                 estimate.setEstimate(planningPokerPriorityEsimate.getInt("estimate"));
                 estimate.setExplanation(planningPokerPriorityEsimate.getString("explanation"));
-                arrayPlanningPokerEsitmates[i] = estimate;
+                planningPokerEstimatesList.add(estimate);
             }
 
-            // Turn arrays to lists
-            List<PriorityEstimate> prioEstimates = Arrays.asList(arrayEstimates);
-            List<PlanningPokerEstimate> planningPokerEstimates = Arrays.asList();
-
             // put lists into UserStory
-            us.setPlanningPokerEstimates(planningPokerEstimates);
-            us.setPriorityEstimates(prioEstimates);
+            us.setPlanningPokerEstimates(planningPokerEstimatesList);
+            us.setPriorityEstimates(priorityEstimatesList);
             return us;
         } catch (JSONException e) {
             e.printStackTrace();

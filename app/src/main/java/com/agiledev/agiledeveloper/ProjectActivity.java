@@ -16,6 +16,7 @@ import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
 import com.agiledev.agiledeveloper.entities.UserStory;
 import com.agiledev.agiledeveloper.services.UserStoryService;
 import com.agiledev.agiledeveloper.utils.UserStoryArrayAdapter;
+import com.agiledev.agiledeveloper.utils.UserStoryContainer;
 
 import java.util.List;
 
@@ -82,6 +83,10 @@ public class ProjectActivity extends AppCompatActivity {
                 intent.putExtra("isEditing", false);
                 startActivityForResult(intent, 0);
                 break;
+
+            case R.id.action_planning_poker:
+                intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
+                startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -111,6 +116,8 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
+
+        UserStoryContainer.setUserStories(stories);
 
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);

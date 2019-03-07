@@ -27,6 +27,10 @@ public class UserStoryService {
         this.parser = new UserStoryDataParser();
     }
 
+    /**
+     * Býr til nýtt user story.
+     * @param userStory
+     */
     public void create(UserStory userStory) {
         Thread t = new Thread(new Runnable() {
 
