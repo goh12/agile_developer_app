@@ -36,14 +36,14 @@ public class PriorityService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.create(priorityEstimate);
-
+                // final ResponseWrapper res = parser.create(priorityEstimate);
                 final PriorityActivity activity = (PriorityActivity) context;
+
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        activity.priorityEstimateSaved(res.getSuccess(), res.getMessage());
+                       // activity.priorityEstimateSaved(res.getSuccess(), res.getMessage());
                     }
                 });
             }
@@ -63,18 +63,14 @@ public class PriorityService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.delete(priorityEstimate);
+                // final ResponseWrapper res = parser.delete(priorityEstimate);
                 final PriorityActivity activity = (PriorityActivity) context;
-
-                if (res.getSuccess()) {
-                    Log.e("TEST", res.getMessage());
-                }
 
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        activity.priorityDeleted(res.getSuccess(), res.getMessage());
+                       // activity.priorityDeleted(res.getSuccess(), res.getMessage());
                     }
                 });
             }
