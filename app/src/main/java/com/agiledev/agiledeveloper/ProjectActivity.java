@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,13 +12,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
-import com.agiledev.agiledeveloper.entities.PlanningPokerEstimate;
-import com.agiledev.agiledeveloper.entities.PriorityEstimate;
 import com.agiledev.agiledeveloper.entities.UserStory;
-import com.agiledev.agiledeveloper.services.PlanningPokerService;
 import com.agiledev.agiledeveloper.services.UserStoryService;
-import com.agiledev.agiledeveloper.services.PriorityService;
 import com.agiledev.agiledeveloper.utils.UserStoryArrayAdapter;
+import com.agiledev.agiledeveloper.utils.UserStoryContainer;
 
 import java.util.List;
 
@@ -92,6 +87,16 @@ public class ProjectActivity extends AppCompatActivity {
                 intent.putExtra("isEditing", false);
                 startActivityForResult(intent, 0);
                 break;
+
+            case R.id.action_planning_poker:
+                intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.action_estimate:
+                intent = new Intent(getBaseContext(), PriorityActivity.class);
+                startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -121,6 +126,7 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
+        UserStoryContainer.setUserStories(stories);
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);

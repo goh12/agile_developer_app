@@ -10,8 +10,20 @@
     />
 
     <item
+        android:id="@+id/action_planning_poker"
+        android:title="Planning Poker"
+    />
+
+    <item
+        android:id="@+id/action_estimate"
+        android:title="Priority Estimate"
+        />
+
+    <item
         android:id="@+id/action_log_out"
         android:title="Log out"
     />
+
+
 
 </menu>

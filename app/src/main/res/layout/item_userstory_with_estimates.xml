@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/userstory_content_background"
+    android:foreground="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/estimate_user_story_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineHeight="32dp"
+        android:textSize="16dp"
+        android:minLines="2"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:textColor="#111111"
+        android:padding="5dp"
+        android:gravity="center_vertical"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices lacus et ante porta pretium. Praesent lobortis velit ut quam facilisis viverra quis id urna. Nullam et leo sodales arcu hendrerit congue vel et sem."
+        />
+
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/estimate_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="128dp">
+    </ListView>
+
+</LinearLayout>

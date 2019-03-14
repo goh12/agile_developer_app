@@ -1,8 +1,7 @@
 package com.agiledev.agiledeveloper.dataparsers;
 
 import com.agiledev.agiledeveloper.datacontrollers.PlanningPokerDataController;
-import com.agiledev.agiledeveloper.datacontrollers.PriorityDataController;
-import com.agiledev.agiledeveloper.entities.PlanningPokerEstimate;
+import com.agiledev.agiledeveloper.entities.Estimate;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,7 +14,7 @@ public class PlanningPokerDataParser {
         this.controller = new PlanningPokerDataController();
     }
 
-    public ResponseWrapper create(PlanningPokerEstimate estimate) {
+    public ResponseWrapper create(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             /*{
@@ -42,7 +41,7 @@ public class PlanningPokerDataParser {
                 String explanation = projectJSON.getString("explanation");
                 int id = projectJSON.getInt("id");
 
-                PlanningPokerEstimate planningPokerEstimate = new PlanningPokerEstimate(id);
+                Estimate planningPokerEstimate = new Estimate(id);
                 planningPokerEstimate.setExplanation(explanation);
                 planningPokerEstimate.setEstimate(returnEstimate);
 
@@ -55,7 +54,7 @@ public class PlanningPokerDataParser {
         return null;
     }
 
-    public ResponseWrapper delete(PlanningPokerEstimate estimate) {
+    public ResponseWrapper delete(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             ob.put("id",estimate.getId());

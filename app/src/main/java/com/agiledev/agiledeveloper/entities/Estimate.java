@@ -2,13 +2,15 @@ package com.agiledev.agiledeveloper.entities;
 
 import java.io.Serializable;
 
-public class PlanningPokerEstimate implements Serializable {
+
+public class Estimate implements Serializable {
     private final int id;
     private int estimate;
     private String explanation;
     private UserStory userStory;
 
-    public PlanningPokerEstimate(int id) {
+
+    public Estimate(int id) {
         this.id = id;
     }
 
@@ -23,7 +25,6 @@ public class PlanningPokerEstimate implements Serializable {
     public String getExplanation() {
         return explanation;
     }
-
     public int getId() {return id;}
     public void setExplanation(String explanation) {
         this.explanation = explanation;

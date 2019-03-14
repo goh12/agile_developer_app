@@ -1,7 +1,7 @@
 package com.agiledev.agiledeveloper.dataparsers;
 
 import com.agiledev.agiledeveloper.datacontrollers.PriorityDataController;
-import com.agiledev.agiledeveloper.entities.PriorityEstimate;
+import com.agiledev.agiledeveloper.entities.Estimate;
 import com.agiledev.agiledeveloper.entities.Project;
 
 import org.json.JSONException;
@@ -14,7 +14,7 @@ public class PriorityDataParser {
         this.controller = new PriorityDataController();
     }
 
-    public ResponseWrapper create(PriorityEstimate estimate) {
+    public ResponseWrapper create(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             //    private final int id;
@@ -39,7 +39,7 @@ public class PriorityDataParser {
                 String explanation = projectJSON.getString("explanation");
                 int id = projectJSON.getInt("id");
 
-                PriorityEstimate priorityEstimate = new PriorityEstimate(id);
+                Estimate priorityEstimate = new Estimate(id);
                 priorityEstimate.setExplanation(explanation);
                 priorityEstimate.setEstimate(returnEstimate);
 
@@ -52,7 +52,7 @@ public class PriorityDataParser {
         return null;
     }
 
-    public ResponseWrapper delete(PriorityEstimate estimate) {
+    public ResponseWrapper delete(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             ob.put("id",estimate.getId());

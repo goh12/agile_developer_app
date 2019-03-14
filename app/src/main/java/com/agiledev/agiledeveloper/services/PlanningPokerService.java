@@ -5,7 +5,7 @@ import android.content.Context;
 import com.agiledev.agiledeveloper.PlanningPokerActivity;
 import com.agiledev.agiledeveloper.dataparsers.PlanningPokerDataParser;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
-import com.agiledev.agiledeveloper.entities.PlanningPokerEstimate;
+import com.agiledev.agiledeveloper.entities.Estimate;
 
 
 public class PlanningPokerService {
@@ -26,7 +26,7 @@ public class PlanningPokerService {
      * Vistar PlanningPokerEstimate
      * @param planningPokerEstimate
      */
-    public void create(PlanningPokerEstimate planningPokerEstimate) {
+    public void create(Estimate planningPokerEstimate) {
         Thread t = new Thread(new Runnable() {
 
             @Override
@@ -53,7 +53,7 @@ public class PlanningPokerService {
      * Eyðir PlanningPokerEstimate
      * @param planningPokerEstimate
      */
-    public void delete(PlanningPokerEstimate planningPokerEstimate) {
+    public void delete(Estimate planningPokerEstimate) {
         Thread t = new Thread(new Runnable() {
 
             @Override
