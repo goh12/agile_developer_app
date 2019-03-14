@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.agiledev.agiledeveloper.utils.PlanningPokerAdapter;
-import com.agiledev.agiledeveloper.utils.UserStoryContainer;
+import com.agiledev.agiledeveloper.utils.ProjectContainer;
 
 public class PriorityActivity extends AppCompatActivity {
 
@@ -15,7 +15,7 @@ public class PriorityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_priority);
 
         ListView lv = (ListView) findViewById(R.id.priority_userStoryListView);
-        PlanningPokerAdapter adapter = new PlanningPokerAdapter(this, UserStoryContainer.getUserStories());
+        PlanningPokerAdapter adapter = new PlanningPokerAdapter(this, ProjectContainer.getUserStories());
         lv.setAdapter(adapter);
     }
 }
