@@ -1,17 +1,13 @@
 package com.agiledev.agiledeveloper.services;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.agiledev.agiledeveloper.PriorityActivity;
 import com.agiledev.agiledeveloper.ProjectActivity;
 import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
 import com.agiledev.agiledeveloper.UserStoryEditActivity;
 import com.agiledev.agiledeveloper.dataparsers.PriorityDataParser;
-import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
-import com.agiledev.agiledeveloper.dataparsers.UserStoryDataParser;
 import com.agiledev.agiledeveloper.entities.PriorityEstimate;
-import com.agiledev.agiledeveloper.entities.UserStory;
 
 public class PriorityService {
 
