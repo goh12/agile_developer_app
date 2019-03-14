@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,12 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
-import com.agiledev.agiledeveloper.entities.PlanningPokerEstimate;
-import com.agiledev.agiledeveloper.entities.PriorityEstimate;
 import com.agiledev.agiledeveloper.entities.UserStory;
-import com.agiledev.agiledeveloper.services.PlanningPokerService;
 import com.agiledev.agiledeveloper.services.UserStoryService;
-import com.agiledev.agiledeveloper.services.PriorityService;
 import com.agiledev.agiledeveloper.utils.UserStoryArrayAdapter;
 import com.agiledev.agiledeveloper.utils.UserStoryContainer;
 
@@ -132,12 +126,7 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
-<<<<<<< HEAD
-=======
-
         UserStoryContainer.setUserStories(stories);
-
->>>>>>> 0cf540c279361000cc3b449bf1d0261bd27bac25
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);

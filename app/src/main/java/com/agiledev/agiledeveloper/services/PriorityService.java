@@ -8,7 +8,7 @@ import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
 import com.agiledev.agiledeveloper.UserStoryEditActivity;
 import com.agiledev.agiledeveloper.dataparsers.PriorityDataParser;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
-import com.agiledev.agiledeveloper.entities.PriorityEstimate;
+import com.agiledev.agiledeveloper.entities.Estimate;
 
 public class PriorityService {
 
@@ -28,7 +28,7 @@ public class PriorityService {
      * Vistar PriorityEstimate
      * @param priorityEstimate
      */
-    public void create(PriorityEstimate priorityEstimate) {
+    public void create(Estimate priorityEstimate) {
         Thread t = new Thread(new Runnable() {
 
             @Override
@@ -55,7 +55,7 @@ public class PriorityService {
      * Eyðir PriorityEstimate
      * @param priorityEstimate
      */
-    public void delete(PriorityEstimate priorityEstimate) {
+    public void delete(Estimate priorityEstimate) {
         Thread t = new Thread(new Runnable() {
 
             @Override
