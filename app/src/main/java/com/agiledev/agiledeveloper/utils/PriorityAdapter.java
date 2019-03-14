@@ -1,22 +1,16 @@
 package com.agiledev.agiledeveloper.utils;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.agiledev.agiledeveloper.CreateEstimateFragment;
 import com.agiledev.agiledeveloper.R;
 
 import com.agiledev.agiledeveloper.entities.UserStory;
@@ -49,6 +43,8 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
         EstimateAdapter adapter = new EstimateAdapter(getContext(), story.getPriorityEstimates());
         estimatesListView.setAdapter(adapter);
 
+        LinearLayout estimateCreateView = (LinearLayout) convertView.findViewById(R.id.estimate_create_view);
+
 
         estimatesListView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -74,11 +70,11 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
         newEstimate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment createFragment = new CreateEstimateFragment();
-                FragmentManager manager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.estimate_user_story_container, createFragment);
-                transaction.commit();
+                if (estimateCreateView.getVisibility() == View.GONE) {
+                    estimateCreateView.setVisibility(View.VISIBLE);
+                } else {
+                    estimateCreateView.setVisibility(View.GONE);
+                }
             }
         });
 
