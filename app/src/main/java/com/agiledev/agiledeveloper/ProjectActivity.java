@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,8 +14,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
+import com.agiledev.agiledeveloper.entities.PriorityEstimate;
 import com.agiledev.agiledeveloper.entities.UserStory;
 import com.agiledev.agiledeveloper.services.UserStoryService;
+import com.agiledev.agiledeveloper.services.PriorityService;
 import com.agiledev.agiledeveloper.utils.UserStoryArrayAdapter;
 
 import java.util.List;
@@ -45,6 +48,11 @@ public class ProjectActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
+        //testService.delete(testEstimate);
     }
 
 
@@ -111,6 +119,20 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
+
+        PriorityService testService = new PriorityService(this);
+        PriorityEstimate testEstimate = new PriorityEstimate(123);
+        testEstimate.setEstimate(5);
+        testEstimate.setExplanation("Test Expl.");
+        UserStory story = stories.get(0);
+        Long storyId = story.getId();
+        testEstimate.setUserStory(storyId);
+        PriorityEstimate testEstimate2 = story.getPriorityEstimates().get(0);
+        testEstimate2.setUserStory(story.getId());
+        testService.delete(testEstimate2);
+
+        Log.e("testLog",story.getTextContent());
+        Log.e("testLog2",story.getPriorityEstimates().get(0).getExplanation());
 
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);

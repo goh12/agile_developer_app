@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.agiledev.agiledeveloper.PriorityActivity;
+import com.agiledev.agiledeveloper.ProjectActivity;
 import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
 import com.agiledev.agiledeveloper.UserStoryEditActivity;
 import com.agiledev.agiledeveloper.dataparsers.PriorityDataParser;
@@ -37,7 +38,7 @@ public class PriorityService {
             public void run() {
 
                 // final ResponseWrapper res = parser.create(priorityEstimate);
-                final PriorityActivity activity = (PriorityActivity) context;
+                final ProjectActivity activity = (ProjectActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
 
@@ -64,7 +65,7 @@ public class PriorityService {
             public void run() {
 
                 // final ResponseWrapper res = parser.delete(priorityEstimate);
-                final PriorityActivity activity = (PriorityActivity) context;
+                final ProjectActivity activity = (ProjectActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
 
