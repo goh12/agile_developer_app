@@ -9,6 +9,7 @@ import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
 import com.agiledev.agiledeveloper.dataparsers.ProjectDataParser;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
 import com.agiledev.agiledeveloper.entities.Project;
+import com.agiledev.agiledeveloper.utils.ProjectContainer;
 
 public class ProjectService {
 
@@ -41,7 +42,14 @@ public class ProjectService {
                 Project project = new Project();  //Setja upp gögnin sem þarf að vinna úr.
                 project.setToken(inputToken);
 
+
                 final ResponseWrapper res = parser.login(project);  //Kall á DataParser til að vinna úr gögnum
+
+                // Setjum verkefnið(e.Project) í ílát (e.ProjectContainer) ef login heppnast.
+                if (res.getSuccess()) {
+                    Project p = (Project) res.getContent();
+                    ProjectContainer.setProject(p);
+                }
 
                 final LoginActivity activity = (LoginActivity) context;
                 activity.runOnUiThread(new Runnable() {

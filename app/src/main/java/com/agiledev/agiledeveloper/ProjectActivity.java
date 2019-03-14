@@ -3,7 +3,9 @@ package com.agiledev.agiledeveloper;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,10 +14,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.entities.UserStory;
 import com.agiledev.agiledeveloper.services.UserStoryService;
 import com.agiledev.agiledeveloper.utils.UserStoryArrayAdapter;
-import com.agiledev.agiledeveloper.utils.UserStoryContainer;
+import com.agiledev.agiledeveloper.utils.ProjectContainer;
 
 import java.util.List;
 
@@ -32,6 +35,14 @@ public class ProjectActivity extends AppCompatActivity {
 
         this.swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.project_refresh_layout);
 
+        // Náum í Project úr ProjectContainer til þess að uppfæra titilin á "Action bar" fyrir Project Activity
+        Project p = ProjectContainer.getProject();
+        if(p != null){
+            String title = p.getName();
+            setTitle(title);
+        }
+        else setTitle("Project name not found");
+
         //Búa til lista af User Stories
         this.userStoryService = new UserStoryService(this);
         this.userStoryService.getAll();
@@ -44,9 +55,6 @@ public class ProjectActivity extends AppCompatActivity {
                 userStoryService.getAll();
             }
         });
-
-
-
 
 
         //testService.delete(testEstimate);
@@ -126,7 +134,8 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
-        UserStoryContainer.setUserStories(stories);
+
+        ProjectContainer.setUserStories(stories);
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);
