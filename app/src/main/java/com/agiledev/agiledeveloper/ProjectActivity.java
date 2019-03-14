@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -46,6 +45,11 @@ public class ProjectActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
+        //testService.delete(testEstimate);
     }
 
 
@@ -122,9 +126,7 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
-
         UserStoryContainer.setUserStories(stories);
-
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);

@@ -2,6 +2,7 @@ package com.agiledev.agiledeveloper.entities;
 
 import java.io.Serializable;
 
+
 public class Estimate implements Serializable {
     public enum Type {
         PLANNING_POKER, PRIORITY
@@ -11,6 +12,7 @@ public class Estimate implements Serializable {
     private int estimate;
     private String explanation;
     private UserStory userStory;
+
     private Type type;
 
     public Estimate(int id) {
