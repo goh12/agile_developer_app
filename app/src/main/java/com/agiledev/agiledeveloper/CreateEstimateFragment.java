@@ -59,7 +59,7 @@ public class CreateEstimateFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onCreateEstimate() {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            //mListener.onFragmentInteraction();
         }
     }
 
