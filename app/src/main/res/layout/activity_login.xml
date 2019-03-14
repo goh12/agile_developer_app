@@ -17,16 +17,18 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/colorBackground"
+    android:padding="40sp"
     tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/loginTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:paddingBottom="100sp"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name_caps"
         android:textColor="#000"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -38,26 +40,30 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/edit_text_background"
-        android:gravity="center_horizontal"
-        android:hint="@string/project_token"
+        android:drawableLeft="@drawable/ic_token"
+        android:drawableStart="@drawable/ic_token"
+        android:drawablePadding="5dp"
+        android:gravity="left"
+        android:hint="@string/token"
         android:inputType="text"
         android:textSize="18sp" />
 
+
     <Button
         android:id="@+id/loginButton"
-        android:textAllCaps="false"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:layout_margin="5dp"
         android:background="@drawable/button"
         android:padding="10dp"
-        android:textSize="22sp"
-        android:layout_margin="5dp"
-        android:text="@string/login" />
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
     <Button
         android:id="@+id/createProjectButton"
         android:textAllCaps="false"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:textColor="@color/white"
