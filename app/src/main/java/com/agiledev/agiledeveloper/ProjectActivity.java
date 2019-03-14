@@ -119,21 +119,6 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
-
-        PriorityService testService = new PriorityService(this);
-        PriorityEstimate testEstimate = new PriorityEstimate(123);
-        testEstimate.setEstimate(5);
-        testEstimate.setExplanation("Test Expl.");
-        UserStory story = stories.get(0);
-        Long storyId = story.getId();
-        testEstimate.setUserStory(storyId);
-        PriorityEstimate testEstimate2 = story.getPriorityEstimates().get(0);
-        testEstimate2.setUserStory(story.getId());
-        testService.delete(testEstimate2);
-
-        Log.e("testLog",story.getTextContent());
-        Log.e("testLog2",story.getPriorityEstimates().get(0).getExplanation());
-
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);

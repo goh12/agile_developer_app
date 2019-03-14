@@ -37,7 +37,7 @@ public class PriorityService {
             @Override
             public void run() {
 
-                // final ResponseWrapper res = parser.create(priorityEstimate);
+                final ResponseWrapper res = parser.create(priorityEstimate);
                 final ProjectActivity activity = (ProjectActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
@@ -64,7 +64,7 @@ public class PriorityService {
             @Override
             public void run() {
 
-                // final ResponseWrapper res = parser.delete(priorityEstimate);
+                final ResponseWrapper res = parser.delete(priorityEstimate);
                 final ProjectActivity activity = (ProjectActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
