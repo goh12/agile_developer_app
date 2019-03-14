@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorBackground"
+        android:padding="40sp"
+        tools:context=".LoginActivity">
+
+        <TextView
+            android:id="@+id/loginTitle"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="100sp"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name_caps"
+            android:textColor="#000"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/tokenInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/ic_token"
+            android:drawableStart="@drawable/ic_token"
+            android:drawablePadding="5dp"
+            android:gravity="left"
+            android:hint="@string/token"
+            android:inputType="text"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:padding="10dp"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+        <Button
+            android:id="@+id/createProjectButton"
+            android:textAllCaps="false"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:padding="10dp"
+            android:background="@drawable/button"
+            android:text="@string/create_project" />
+
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loginProgressbar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
+</RelativeLayout>
