@@ -13,7 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.services.ProjectService;
+import com.agiledev.agiledeveloper.utils.ProjectContainer;
 
 public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
@@ -85,12 +87,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void isLoggedIn(boolean success) {
+    public void isLoggedIn(Project project) {
         loginLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
-        if (success) {
+        if (project != null) {
             Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_LONG).show();
-
+            ProjectContainer.setProject(project);
             // opna project activity
             Intent intent = new Intent(getBaseContext(), ProjectActivity.class);
             this.startActivity(intent);

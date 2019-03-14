@@ -101,7 +101,12 @@ public class ProjectDataParser {
 
             boolean success = response.getBoolean("success");
             String message = response.getString("message");
-            return new ResponseWrapper(success, message, null);
+
+            JSONObject ob = response.getJSONObject("content");
+            Project project = new Project();
+            project.setName(ob.getString("name"));
+
+            return new ResponseWrapper(success, message, project);
         } catch (JSONException e) {
             e.printStackTrace();
             return new ResponseWrapper(false, e.getMessage(), null);
