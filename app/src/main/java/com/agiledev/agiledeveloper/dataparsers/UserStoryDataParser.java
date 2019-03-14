@@ -137,6 +137,7 @@ public class UserStoryDataParser {
                         new Estimate(priorityEsimate.getInt("id"));
                 estimate.setEstimate(priorityEsimate.getInt("estimate"));
                 estimate.setExplanation(priorityEsimate.getString("explanation"));
+                estimate.setType(Estimate.Type.PRIORITY);
                 priorityEstimatesList.add(estimate);
             }
 
@@ -150,6 +151,7 @@ public class UserStoryDataParser {
                 estimate.setEstimate(planningPokerPriorityEsimate.getInt("estimate"));
                 estimate.setExplanation(planningPokerPriorityEsimate.getString("explanation"));
                 estimate.setUserStory(us);
+                estimate.setType(Estimate.Type.PLANNING_POKER);
                 planningPokerEstimatesList.add(estimate);
             }
 
