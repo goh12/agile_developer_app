@@ -12,11 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlanningPokerActivity"></activity>
+        <activity android:name=".PlanningPokerActivity" />
         <activity
             android:name=".UserStoryEditActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
-        <activity android:name=".UserStoryDisplayActivity"></activity>
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".UserStoryDisplayActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +29,7 @@
             android:label="@string/title_activity_project"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ProjectActivity" />
+        <activity android:name=".PriorityActivity"></activity>
     </application>
 
 </manifest>

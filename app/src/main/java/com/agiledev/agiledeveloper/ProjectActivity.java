@@ -87,6 +87,12 @@ public class ProjectActivity extends AppCompatActivity {
             case R.id.action_planning_poker:
                 intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.action_estimate:
+                intent = new Intent(getBaseContext(), PriorityActivity.class);
+                startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
