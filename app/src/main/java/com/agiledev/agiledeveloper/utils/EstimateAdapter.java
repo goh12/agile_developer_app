@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.agiledev.agiledeveloper.R;
 import com.agiledev.agiledeveloper.entities.Estimate;
+import com.agiledev.agiledeveloper.services.PlanningPokerService;
+import com.agiledev.agiledeveloper.services.PriorityService;
 
 import org.w3c.dom.Text;
 
@@ -45,9 +47,11 @@ public class EstimateAdapter extends ArrayAdapter<Estimate> {
             @Override
             public void onClick(View v) {
                 if(es.getType() == Estimate.Type.PRIORITY) {
-
+                    PriorityService service = new PriorityService(getContext());
+                    service.delete(es);
                 } else if (es.getType() == Estimate.Type.PLANNING_POKER) {
-
+                    PlanningPokerService service = new PlanningPokerService(getContext());
+                    service.delete(es);
                 }
             }
         });

@@ -56,10 +56,10 @@ public class PriorityDataParser {
         try {
             JSONObject ob = new JSONObject();
             ob.put("id",estimate.getId());
-            JSONObject obUserStory = new JSONObject();
+            JSONObject
+                    obUserStory = new JSONObject();
             obUserStory.put("id", estimate.getUserStory().getId());
             ob.putOpt("userStory", obUserStory);
-            ob = this.controller.delete(ob);
             JSONObject response = this.controller.delete(ob);
 
             boolean success = response.getBoolean("success");
