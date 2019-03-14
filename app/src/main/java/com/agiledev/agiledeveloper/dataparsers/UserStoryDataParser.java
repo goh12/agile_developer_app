@@ -149,6 +149,7 @@ public class UserStoryDataParser {
                         new Estimate(planningPokerPriorityEsimate.getInt("id"));
                 estimate.setEstimate(planningPokerPriorityEsimate.getInt("estimate"));
                 estimate.setExplanation(planningPokerPriorityEsimate.getString("explanation"));
+                estimate.setUserStory(us);
                 planningPokerEstimatesList.add(estimate);
             }
 
