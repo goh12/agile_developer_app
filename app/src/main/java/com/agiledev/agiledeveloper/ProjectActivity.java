@@ -21,6 +21,7 @@ import com.agiledev.agiledeveloper.services.PlanningPokerService;
 import com.agiledev.agiledeveloper.services.UserStoryService;
 import com.agiledev.agiledeveloper.services.PriorityService;
 import com.agiledev.agiledeveloper.utils.UserStoryArrayAdapter;
+import com.agiledev.agiledeveloper.utils.UserStoryContainer;
 
 import java.util.List;
 
@@ -92,6 +93,16 @@ public class ProjectActivity extends AppCompatActivity {
                 intent.putExtra("isEditing", false);
                 startActivityForResult(intent, 0);
                 break;
+
+            case R.id.action_planning_poker:
+                intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.action_estimate:
+                intent = new Intent(getBaseContext(), PriorityActivity.class);
+                startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -121,6 +132,12 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
+<<<<<<< HEAD
+=======
+
+        UserStoryContainer.setUserStories(stories);
+
+>>>>>>> 0cf540c279361000cc3b449bf1d0261bd27bac25
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);

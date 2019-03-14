@@ -2,16 +2,15 @@ package com.agiledev.agiledeveloper.entities;
 
 import java.io.Serializable;
 
-public class PriorityEstimate implements Serializable {
 
-
+public class Estimate implements Serializable {
     private final int id;
     private int estimate;
     private String explanation;
     private UserStory userStory;
 
 
-    public PriorityEstimate(int id) {
+    public Estimate(int id) {
         this.id = id;
     }
 
