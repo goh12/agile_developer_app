@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:lineHeight="24dp" />
+            android:lineHeight="24dp"/>
 
         <EditText
             android:id="@+id/estimate_explanation"
@@ -82,11 +82,10 @@
             android:lineHeight="24dp"
             android:minLines="2"
             android:background="@drawable/userstory_content_background"
-            android:textColor="#444444"
-            />
+            android:textColor="#444444"/>
 
         <Button
-            android:id="@+id/create_estimate"
+            android:id="@+id/create_estimate_button"
             android:layout_width="wrap_content"
             android:layout_height="26dp"
             android:background="@drawable/button"

@@ -1,11 +1,14 @@
 package com.agiledev.agiledeveloper.utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -13,7 +16,9 @@ import android.widget.TextView;
 
 import com.agiledev.agiledeveloper.R;
 
+import com.agiledev.agiledeveloper.entities.Estimate;
 import com.agiledev.agiledeveloper.entities.UserStory;
+import com.agiledev.agiledeveloper.services.PriorityService;
 
 import java.util.List;
 
@@ -27,7 +32,9 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        PriorityService service = new PriorityService(getContext());
         UserStory story = (UserStory) getItem(position);
+
 
         if (convertView == null) {
             convertView = LayoutInflater.from(
@@ -43,8 +50,11 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
         EstimateAdapter adapter = new EstimateAdapter(getContext(), story.getPriorityEstimates());
         estimatesListView.setAdapter(adapter);
 
+        // create estimate objects
         LinearLayout estimateCreateView = (LinearLayout) convertView.findViewById(R.id.estimate_create_view);
-
+        EditText estimateValue = (EditText) convertView.findViewById(R.id.estimate_number);
+        EditText estimateExplanation = (EditText) convertView.findViewById(R.id.estimate_explanation);
+        Button submitEstimateButton = (Button) convertView.findViewById(R.id.create_estimate_button);
 
         estimatesListView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -70,6 +80,7 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
         newEstimate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("hehe", "onClick: jeje");
                 if (estimateCreateView.getVisibility() == View.GONE) {
                     estimateCreateView.setVisibility(View.VISIBLE);
                 } else {
@@ -77,6 +88,24 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
                 }
             }
         });
+
+        // handler that creates the estimate object and sends it to the service
+        submitEstimateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String valueString = estimateValue.getText().toString();
+                int finalValue = Integer.parseInt(valueString);
+
+                String estimateExplanationValue = estimateExplanation.getText().toString();
+
+                Estimate estimate = new Estimate(finalValue, estimateExplanationValue, story);
+
+                service.create(estimate);
+            }
+        });
+
+
 
 
         return convertView;

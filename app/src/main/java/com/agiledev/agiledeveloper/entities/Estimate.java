@@ -8,7 +8,7 @@ public class Estimate implements Serializable {
         PLANNING_POKER, PRIORITY
     }
 
-    private final int id;
+    private int id;
     private int estimate;
     private String explanation;
     private UserStory userStory;
@@ -17,6 +17,12 @@ public class Estimate implements Serializable {
 
     public Estimate(int id) {
         this.id = id;
+    }
+
+    public Estimate(int estimate, String explanation, UserStory userStory) {
+        this.estimate = estimate;
+        this.explanation = explanation;
+        this.userStory = userStory;
     }
 
     public int getEstimate() {

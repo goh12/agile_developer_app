@@ -3,6 +3,7 @@ package com.agiledev.agiledeveloper.services;
 import android.content.Context;
 
 //import com.agiledev.agiledeveloper.PriorityActivity;
+import com.agiledev.agiledeveloper.PriorityActivity;
 import com.agiledev.agiledeveloper.ProjectActivity;
 import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
 import com.agiledev.agiledeveloper.UserStoryEditActivity;
@@ -35,13 +36,13 @@ public class PriorityService {
             public void run() {
 
                 final ResponseWrapper res = parser.create(priorityEstimate);
-                final ProjectActivity activity = (ProjectActivity) context;
+                final PriorityActivity activity = (PriorityActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                       // activity.priorityEstimateSaved(res.getSuccess(), res.getMessage());
+                        activity.priorityEstimateCreated(res.getSuccess(), res.getMessage());
                     }
                 });
             }
