@@ -27,7 +27,7 @@
             android:padding="5dp"
             android:gravity="center_vertical"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices lacus et ante porta pretium. Praesent lobortis velit ut quam facilisis viverra quis id urna. Nullam et leo sodales arcu hendrerit congue vel et sem."
-            />
+        />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -38,6 +38,7 @@
             android:gravity="center"
             >
             <ImageButton
+                android:contentDescription="Add estimate"
                 android:id="@+id/estimate_new"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
@@ -47,14 +48,6 @@
 
                 />
 
-            <ImageButton
-                android:id="@+id/estimate_delete"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="@drawable/ic_baseline_delete_24px"
-                android:backgroundTint="#555"
-                android:foreground="?attr/selectableItemBackground"
-                />
         </LinearLayout>
     </LinearLayout>
 

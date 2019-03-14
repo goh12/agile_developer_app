@@ -21,4 +21,14 @@
         android:layout_weight="8"
     />
 
+    <ImageButton
+        android:contentDescription="@string/estimate_delete"
+        android:id="@+id/estimate_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_baseline_delete_24px"
+        android:backgroundTint="#555"
+        android:foreground="?attr/selectableItemBackground"
+    />
+
 </LinearLayout>
