@@ -1,5 +1,4 @@
 package com.agiledev.agiledeveloper.dataparsers;
-import android.util.Log;
 
 import com.agiledev.agiledeveloper.datacontrollers.*;
 import com.agiledev.agiledeveloper.entities.*;
@@ -10,11 +9,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Arrays;
 
 public class UserStoryDataParser {
     UserStoryDataController controller;
@@ -135,23 +130,23 @@ public class UserStoryDataParser {
 
 
             // Populate priority estimates array
-            ArrayList<PriorityEstimate> priorityEstimatesList = new ArrayList<>();
+            ArrayList<Estimate> priorityEstimatesList = new ArrayList<>();
             for(int i = 0; i<priorityEstimates.length(); i++){
                 JSONObject priorityEsimate = priorityEstimates.getJSONObject(i);
-                PriorityEstimate estimate =
-                        new PriorityEstimate(priorityEsimate.getInt("id"));
+                Estimate estimate =
+                        new Estimate(priorityEsimate.getInt("id"));
                 estimate.setEstimate(priorityEsimate.getInt("estimate"));
                 estimate.setExplanation(priorityEsimate.getString("explanation"));
                 priorityEstimatesList.add(estimate);
             }
 
             // Populate PlanningPokerEstimates array
-            ArrayList<PlanningPokerEstimate> planningPokerEstimatesList = new ArrayList<>();
+            ArrayList<Estimate> planningPokerEstimatesList = new ArrayList<>();
             for(int i = 0; i<planningPokerPriority.length(); i++){
 
                 JSONObject planningPokerPriorityEsimate = planningPokerPriority.getJSONObject(i);
-                PlanningPokerEstimate estimate =
-                        new PlanningPokerEstimate(planningPokerPriorityEsimate.getInt("id"));
+                Estimate estimate =
+                        new Estimate(planningPokerPriorityEsimate.getInt("id"));
                 estimate.setEstimate(planningPokerPriorityEsimate.getInt("estimate"));
                 estimate.setExplanation(planningPokerPriorityEsimate.getString("explanation"));
                 planningPokerEstimatesList.add(estimate);

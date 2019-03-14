@@ -5,17 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.agiledev.agiledeveloper.R;
-import com.agiledev.agiledeveloper.entities.PlanningPokerEstimate;
-import com.agiledev.agiledeveloper.entities.UserStory;
+import com.agiledev.agiledeveloper.entities.Estimate;
 
 import java.util.List;
 
-public class EstimateAdapter extends ArrayAdapter<PlanningPokerEstimate> {
+public class EstimateAdapter extends ArrayAdapter<Estimate> {
 
-    public EstimateAdapter(Context context, List<PlanningPokerEstimate> stories) {
+    public EstimateAdapter(Context context, List<Estimate> stories) {
         super(context, 0, stories);
     }
 

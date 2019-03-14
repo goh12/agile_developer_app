@@ -14,8 +14,8 @@ public class UserStory implements Serializable {
     private int planningPokerPriority;
 
 
-    private List<PriorityEstimate> priorityEstimates;
-    private List<PlanningPokerEstimate> planningPokerEstimates;
+    private List<Estimate> priorityEstimates;
+    private List<Estimate> planningPokerEstimates;
 
     private Date created;
 
@@ -42,19 +42,19 @@ public class UserStory implements Serializable {
         this.textContent = textContent;
     }
 
-    public List<PriorityEstimate> getPriorityEstimates() {
+    public List<Estimate> getPriorityEstimates() {
         return priorityEstimates;
     }
 
-    public void setPriorityEstimates(List<PriorityEstimate> priorityEstimates) {
+    public void setPriorityEstimates(List<Estimate> priorityEstimates) {
         this.priorityEstimates = priorityEstimates;
     }
 
-    public List<PlanningPokerEstimate> getPlanningPokerEstimates() {
+    public List<Estimate> getPlanningPokerEstimates() {
         return planningPokerEstimates;
     }
 
-    public void setPlanningPokerEstimates(List<PlanningPokerEstimate> planningPokerEstimates) {
+    public void setPlanningPokerEstimates(List<Estimate> planningPokerEstimates) {
         this.planningPokerEstimates = planningPokerEstimates;
     }
 
