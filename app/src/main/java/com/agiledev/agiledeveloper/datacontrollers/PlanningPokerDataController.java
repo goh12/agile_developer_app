@@ -21,7 +21,7 @@ public class PlanningPokerDataController {
     /**
      * Constructor, fetches singleton OkHttpClient.
      */
-    public PlanningPokerDataController() {
+    public  PlanningPokerDataController() {
         client = Networking.getClient();
     }
 

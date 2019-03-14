@@ -14,8 +14,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
+import com.agiledev.agiledeveloper.entities.PlanningPokerEstimate;
 import com.agiledev.agiledeveloper.entities.PriorityEstimate;
 import com.agiledev.agiledeveloper.entities.UserStory;
+import com.agiledev.agiledeveloper.services.PlanningPokerService;
 import com.agiledev.agiledeveloper.services.UserStoryService;
 import com.agiledev.agiledeveloper.services.PriorityService;
 import com.agiledev.agiledeveloper.utils.UserStoryArrayAdapter;
@@ -119,6 +121,18 @@ public class ProjectActivity extends AppCompatActivity {
         if(stories == null) {
             return;
         }
+
+        PlanningPokerService testService = new PlanningPokerService(this);
+
+        PlanningPokerEstimate testimate = new PlanningPokerEstimate(5812345);
+        testimate.setEstimate(5812345);
+        testimate.setExplanation("Testimation");
+        testimate.setUserStory(stories.get(0).getId());
+
+        testService.create(testimate);
+        testService.delete(testimate);
+
+
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);

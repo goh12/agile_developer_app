@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.agiledev.agiledeveloper.PlanningPokerActivity;
 import com.agiledev.agiledeveloper.dataparsers.PlanningPokerDataParser;
+import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
 import com.agiledev.agiledeveloper.entities.PlanningPokerEstimate;
 
 
@@ -31,7 +32,7 @@ public class PlanningPokerService {
             @Override
             public void run() {
 
-                // final ResponseWrapper res = parser.create(planningPokerEstimate);
+                final ResponseWrapper res = parser.create(planningPokerEstimate);
                 final PlanningPokerActivity activity = (PlanningPokerActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
@@ -58,7 +59,7 @@ public class PlanningPokerService {
             @Override
             public void run() {
 
-                // final ResponseWrapper res = parser.delete(planningPokerEstimate);
+                final ResponseWrapper res = parser.delete(planningPokerEstimate);
                 final PlanningPokerActivity activity = (PlanningPokerActivity) context;
 
                 activity.runOnUiThread(new Runnable() {

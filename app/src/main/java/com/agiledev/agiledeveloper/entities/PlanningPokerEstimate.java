@@ -6,6 +6,7 @@ public class PlanningPokerEstimate implements Serializable {
     private final int id;
     private int estimate;
     private String explanation;
+    private UserStory userStory;
 
     public PlanningPokerEstimate(int id) {
         this.id = id;
@@ -23,7 +24,15 @@ public class PlanningPokerEstimate implements Serializable {
         return explanation;
     }
 
+    public int getId() {return id;}
     public void setExplanation(String explanation) {
         this.explanation = explanation;
+    }
+    public UserStory getUserStory(){
+        return this.userStory;
+    }
+    public void setUserStory(Long id){
+        UserStory userStory = new UserStory(id);
+        this.userStory = userStory;
     }
 }
