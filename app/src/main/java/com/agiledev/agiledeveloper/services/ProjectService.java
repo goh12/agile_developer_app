@@ -43,11 +43,11 @@ public class ProjectService {
                 project.setToken(inputToken);
 
 
-                final ResponseWrapper res = parser.login(project);  //Kall á DataParser til að vinna úr gögnum
+                final ResponseWrapper<Project> res = parser.login(project);  //Kall á DataParser til að vinna úr gögnum
 
                 // Setjum verkefnið(e.Project) í ílát (e.ProjectContainer) ef login heppnast.
                 if (res.getSuccess()) {
-                    Project p = (Project) res.getContent();
+                    Project p = res.getContent();
                     ProjectContainer.setProject(p);
                 }
 
@@ -82,11 +82,11 @@ public class ProjectService {
                 project.setName(name);
                 project.setToken(token);
 
-                final ResponseWrapper res = parser.create(project);
+                final ResponseWrapper<Project> res = parser.create(project);
 
                 Project projectResponse = null;
                 if (res.getSuccess()) {
-                    projectResponse = (Project) res.getContent();
+                    projectResponse = res.getContent();
                     Log.e("TEST", projectResponse.toString());
                 }
 
@@ -113,14 +113,14 @@ public class ProjectService {
 
             @Override
             public void run() {
-                final ResponseWrapper res = parser.checkLogin();
+                final ResponseWrapper<Project> res = parser.checkLogin();
 
                 final LoginActivity activity = (LoginActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        activity.isLoggedIn((Project) res.getContent());
+                        activity.isLoggedIn(res.getContent());
                     }
                 });
             }

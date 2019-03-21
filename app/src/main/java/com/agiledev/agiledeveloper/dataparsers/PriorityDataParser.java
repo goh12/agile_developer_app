@@ -14,7 +14,7 @@ public class PriorityDataParser {
         this.controller = new PriorityDataController();
     }
 
-    public ResponseWrapper create(Estimate estimate) {
+    public ResponseWrapper<Estimate> create(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             //    private final int id;
@@ -31,7 +31,7 @@ public class PriorityDataParser {
             String message = ob.getString("message");
 
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<>(success, message, null);
             } else {
                 JSONObject projectJSON = ob.getJSONObject("content");
                 // búum til Project er JSON response-i
@@ -43,7 +43,7 @@ public class PriorityDataParser {
                 priorityEstimate.setExplanation(explanation);
                 priorityEstimate.setEstimate(returnEstimate);
 
-                return new ResponseWrapper(success, message, priorityEstimate);
+                return new ResponseWrapper<>(success, message, priorityEstimate);
             }
 
         } catch (JSONException e) {
@@ -52,7 +52,7 @@ public class PriorityDataParser {
         return null;
     }
 
-    public ResponseWrapper delete(Estimate estimate) {
+    public ResponseWrapper<Estimate> delete(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             ob.put("id",estimate.getId());
@@ -65,7 +65,7 @@ public class PriorityDataParser {
             boolean success = response.getBoolean("success");
             String message = response.getString("message");
 
-            return new ResponseWrapper(success, message, null);
+            return new ResponseWrapper<>(success, message, null);
 
         } catch (JSONException e) {
             e.printStackTrace();

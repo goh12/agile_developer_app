@@ -19,7 +19,7 @@ public class ProjectDataParser {
      * @param project
      * @return
      */
-    public ResponseWrapper login(Project project) {
+    public ResponseWrapper<Project> login(Project project) {
         try {
             JSONObject ob = new JSONObject();
 
@@ -32,7 +32,7 @@ public class ProjectDataParser {
 
             // ef ekki success þurfum við ekki að parse-a project hlutinn
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<>(success, message, null);
             } else {
                 JSONObject projectJSON = ob.getJSONObject("content");
                 // búum til Project er JSON response-i
@@ -43,7 +43,7 @@ public class ProjectDataParser {
                 loggedInProject.setName(name);
                 loggedInProject.setToken(token);
 
-                return new ResponseWrapper(success, message, loggedInProject);
+                return new ResponseWrapper<>(success, message, loggedInProject);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -57,7 +57,7 @@ public class ProjectDataParser {
      * @param project
      * @return
      */
-    public ResponseWrapper create(Project project){
+    public ResponseWrapper<Project> create(Project project){
         try {
             JSONObject ob = new JSONObject();
 
@@ -72,7 +72,7 @@ public class ProjectDataParser {
 
             // þurfum ekki að búa til Project hlut ef request-ið gekk ekki
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<>(success, message, null);
             }
 
             // Annars byggjum við upp Project hlut til að skila með í ResponseWrapper-inum
@@ -82,7 +82,7 @@ public class ProjectDataParser {
             projectResponse.setName(projectJSON.getString("name"));
             projectResponse.setToken(projectJSON.getString("token"));
 
-            return new ResponseWrapper(success, message, projectResponse);
+            return new ResponseWrapper<>(success, message, projectResponse);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -95,21 +95,24 @@ public class ProjectDataParser {
      * Byggir upp staðlaðan ResponseWrapper hlut til að skila út frá svari ProjectDataController
      * @return
      */
-    public ResponseWrapper checkLogin(){
+    public ResponseWrapper<Project> checkLogin(){
         try {
             JSONObject response = this.controller.checkLogin();
 
             boolean success = response.getBoolean("success");
             String message = response.getString("message");
 
-            JSONObject ob = response.getJSONObject("content");
-            Project project = new Project();
-            project.setName(ob.getString("name"));
+            Project project = null;
+            if (success) {
+                JSONObject ob = response.getJSONObject("content");
+                project = new Project();
+                project.setName(ob.getString("name"));
+            }
 
-            return new ResponseWrapper(success, message, project);
+            return new ResponseWrapper<>(success, message, project);
         } catch (JSONException e) {
             e.printStackTrace();
-            return new ResponseWrapper(false, e.getMessage(), null);
+            return new ResponseWrapper<>(false, e.getMessage(), null);
         }
     }
 }

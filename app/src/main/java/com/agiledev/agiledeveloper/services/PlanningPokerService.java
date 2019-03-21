@@ -32,7 +32,7 @@ public class PlanningPokerService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.create(planningPokerEstimate);
+                final ResponseWrapper<Estimate> res = parser.create(planningPokerEstimate);
                 final PlanningPokerActivity activity = (PlanningPokerActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
@@ -59,7 +59,7 @@ public class PlanningPokerService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.delete(planningPokerEstimate);
+                final ResponseWrapper<Estimate> res = parser.delete(planningPokerEstimate);
                 final PlanningPokerActivity activity = (PlanningPokerActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
