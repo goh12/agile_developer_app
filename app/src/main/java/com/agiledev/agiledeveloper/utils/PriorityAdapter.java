@@ -56,10 +56,15 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
         EditText estimateExplanation = (EditText) convertView.findViewById(R.id.estimate_explanation);
         Button submitEstimateButton = (Button) convertView.findViewById(R.id.create_estimate_button);
 
+
+
         estimatesListView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                v.getParent().requestDisallowInterceptTouchEvent(true);
+                if (estimatesListView.getAdapter().getCount() > 4) {
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                }
+
                 return false;
             }
         });
@@ -104,7 +109,6 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
                 service.create(estimate);
             }
         });
-
 
 
 

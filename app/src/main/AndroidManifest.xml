@@ -37,7 +37,9 @@
             android:name=".ProjectActivity"
              />
 
-        <activity android:name=".PriorityActivity"></activity>
+        <activity android:name=".PriorityActivity"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
 
     </application>
 
