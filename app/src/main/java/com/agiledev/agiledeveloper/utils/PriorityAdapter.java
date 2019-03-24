@@ -23,7 +23,6 @@ import com.agiledev.agiledeveloper.services.PriorityService;
 import java.util.List;
 
 public class PriorityAdapter extends ArrayAdapter<UserStory> {
-
     public PriorityAdapter(Context context, List<UserStory> stories) {
         super(context, 0, stories);
     }
@@ -33,7 +32,7 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         PriorityService service = new PriorityService(getContext());
-        UserStory story = (UserStory) getItem(position);
+        final UserStory story = (UserStory) getItem(position);
 
 
         if (convertView == null) {
@@ -47,7 +46,7 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
         ImageButton newEstimate = (ImageButton) convertView.findViewById(R.id.estimate_new);
 
         ListView estimatesListView = convertView.findViewById(R.id.estimate_list_view);
-        EstimateAdapter adapter = new EstimateAdapter(getContext(), story.getPriorityEstimates());
+        final EstimateAdapter adapter = new EstimateAdapter(getContext(), story.getPriorityEstimates());
         estimatesListView.setAdapter(adapter);
 
         // create estimate objects
@@ -74,6 +73,7 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
             @Override
             public void onClick(View v) {
                 if(estimatesListView.getVisibility() == View.GONE) {
+                    estimateCreateView.setVisibility(View.GONE);
                     estimatesListView.setVisibility(View.VISIBLE);
                 } else {
                     estimatesListView.setVisibility(View.GONE);
@@ -87,6 +87,7 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
             public void onClick(View v) {
                 Log.d("hehe", "onClick: jeje");
                 if (estimateCreateView.getVisibility() == View.GONE) {
+                    estimatesListView.setVisibility(View.GONE);
                     estimateCreateView.setVisibility(View.VISIBLE);
                 } else {
                     estimateCreateView.setVisibility(View.GONE);
@@ -106,7 +107,9 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
 
                 Estimate estimate = new Estimate(finalValue, estimateExplanationValue, story);
 
-                service.create(estimate);
+                service.create(adapter, story, estimate);
+                estimateCreateView.setVisibility(View.GONE);
+                estimatesListView.setVisibility(View.VISIBLE);
             }
         });
 

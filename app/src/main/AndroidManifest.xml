@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".PlanningPokerActivity" />
+        <activity android:name=".PlanningPokerActivity"
+            android:windowSoftInputMode="adjustPan"/>
 
         <activity
             android:name=".UserStoryEditActivity"

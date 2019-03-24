@@ -138,6 +138,7 @@ public class UserStoryDataParser {
                         new Estimate(priorityEsimate.getInt("id"));
                 estimate.setEstimate(priorityEsimate.getInt("estimate"));
                 estimate.setExplanation(priorityEsimate.getString("explanation"));
+                estimate.setUserStory(us);
                 estimate.setType(Estimate.Type.PRIORITY);
                 priorityEstimatesList.add(estimate);
             }
