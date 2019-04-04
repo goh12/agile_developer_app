@@ -7,8 +7,11 @@ import android.util.Log;
 import com.agiledev.agiledeveloper.ProjectActivity;
 import com.agiledev.agiledeveloper.UserStoryDisplayActivity;
 import com.agiledev.agiledeveloper.UserStoryEditActivity;
+import com.agiledev.agiledeveloper.dataparsers.PlanningPokerDataParser;
+import com.agiledev.agiledeveloper.dataparsers.PriorityDataParser;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
 import com.agiledev.agiledeveloper.dataparsers.UserStoryDataParser;
+import com.agiledev.agiledeveloper.entities.Estimate;
 import com.agiledev.agiledeveloper.entities.UserStory;
 
 import java.util.List;
@@ -63,8 +66,20 @@ public class UserStoryService {
             @Override
             public void run() {
 
+                PlanningPokerDataParser planningPokerDataParser = new PlanningPokerDataParser();
+                PriorityDataParser priorityDataParser = new PriorityDataParser();
+
+                for (Estimate e: userStory.getPriorityEstimates()) {
+                    priorityDataParser.delete(e);
+                }
+
+                for (Estimate e: userStory.getPlanningPokerEstimates()) {
+                    planningPokerDataParser.delete(e);
+                }
+
                 final ResponseWrapper<UserStory> res = parser.delete(userStory);
                 final UserStoryDisplayActivity activity = (UserStoryDisplayActivity) context;
+
 
                 if (res.getSuccess()) {
                     Log.e("TEST", res.getMessage());
