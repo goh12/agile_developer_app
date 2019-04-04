@@ -6,10 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.agiledev.agiledeveloper.Fragments.InfoScreenMenuBar;
-import com.agiledev.agiledeveloper.Fragments.InfoScreenPlanningPoker;
-import com.agiledev.agiledeveloper.Fragments.InfoScreenPriority;
-import com.agiledev.agiledeveloper.Fragments.InfoScreenProject;
 import com.agiledev.agiledeveloper.utils.InfoAdapter;
 
 public class InfoActivity extends AppCompatActivity {
