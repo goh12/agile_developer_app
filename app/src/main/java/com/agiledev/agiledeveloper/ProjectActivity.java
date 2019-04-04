@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.content.Intent;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class ProjectActivity extends AppCompatActivity {
 
     private UserStoryService userStoryService;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class ProjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project);
 
         this.mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.project_refresh_layout);
+        this.mListView = (ListView) findViewById(R.id.userStoryListView);
 
         // Náum í Project úr ProjectContainer til þess að uppfæra titilin á "Action bar" fyrir Project Activity
         Project p = ProjectContainer.getProject();
@@ -108,6 +110,16 @@ public class ProjectActivity extends AppCompatActivity {
                 intent = new Intent(getBaseContext(), PriorityActivity.class);
                 startActivityForResult(intent, 0);
                 break;
+
+            case R.id.order_by_priority:
+                ProjectContainer.sortUserstoriesByPriority(true);
+                this.mListView.setAdapter(new UserStoryArrayAdapter(this, ProjectContainer.getUserStories()));
+                break;
+
+            case R.id.order_by_created:
+                ProjectContainer.sortUserstoriesByPriority(false);
+                this.mListView.setAdapter(new UserStoryArrayAdapter(this, ProjectContainer.getUserStories()));
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -135,9 +147,8 @@ public class ProjectActivity extends AppCompatActivity {
         }
 
         ProjectContainer.setUserStories(stories);
-        ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
-        lView.setAdapter(adapter);
+        this.mListView.setAdapter(adapter);
         this.mSwipeRefreshLayout.setRefreshing(false);
     }
 
