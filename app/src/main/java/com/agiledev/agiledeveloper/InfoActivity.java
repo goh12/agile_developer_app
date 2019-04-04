@@ -1,12 +1,15 @@
 package com.agiledev.agiledeveloper;
 
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.agiledev.agiledeveloper.Fragments.InfoScreenMenuBar;
+import com.agiledev.agiledeveloper.Fragments.InfoScreenPlanningPoker;
+import com.agiledev.agiledeveloper.Fragments.InfoScreenPriority;
+import com.agiledev.agiledeveloper.Fragments.InfoScreenProject;
 import com.agiledev.agiledeveloper.utils.InfoAdapter;
 
 public class InfoActivity extends AppCompatActivity {
@@ -26,7 +29,9 @@ public class InfoActivity extends AppCompatActivity {
 
 
         adapter.addFragment(new InfoScreenProject());
-        adapter.addFragment(new InfoScreenProject());
+        adapter.addFragment(new InfoScreenMenuBar());
+        adapter.addFragment(new InfoScreenPlanningPoker());
+        adapter.addFragment(new InfoScreenPriority());
 
         mViewPager.setAdapter(adapter);
 
