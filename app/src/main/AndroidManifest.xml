@@ -35,7 +35,9 @@
         <activity
             android:name=".PriorityActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".InfoActivity"></activity>
+        <activity
+            android:name=".InfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
