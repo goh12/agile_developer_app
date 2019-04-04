@@ -1,6 +1,7 @@
 package com.agiledev.agiledeveloper.datacontrollers;
 
 
+import android.util.JsonReader;
 import android.util.Log;
 
 import com.agiledev.agiledeveloper.datacontrollers.networking.Networking;
@@ -116,6 +117,17 @@ public class ProjectDataController {
         } catch (JSONException e) {
             Log.e("NETWORKING", "Failed to parse JSON response.");
             e.printStackTrace();
+        } catch (Exception e) {
+            JSONObject ob = new JSONObject();
+
+            try {
+                ob.put("success", false);
+                ob.put("message", "Server doing the sleepies");
+            } catch (JSONException je) {
+
+            }
+
+            return ob;
         }
 
         return null;
