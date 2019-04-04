@@ -3,9 +3,7 @@ package com.agiledev.agiledeveloper;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,7 +23,7 @@ import java.util.List;
 public class ProjectActivity extends AppCompatActivity {
 
     private UserStoryService userStoryService;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     @Override
@@ -33,7 +31,7 @@ public class ProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
 
-        this.swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.project_refresh_layout);
+        this.mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.project_refresh_layout);
 
         // Náum í Project úr ProjectContainer til þess að uppfæra titilin á "Action bar" fyrir Project Activity
         Project p = ProjectContainer.getProject();
@@ -48,7 +46,7 @@ public class ProjectActivity extends AppCompatActivity {
         this.userStoryService.getAll();
 
         //Setja refresh listener.
-        this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        this.mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Toast.makeText(getBaseContext(), "Refreshing", Toast.LENGTH_SHORT).show();
@@ -139,7 +137,7 @@ public class ProjectActivity extends AppCompatActivity {
         ListView lView = (ListView) findViewById(R.id.userStoryListView);
         UserStoryArrayAdapter adapter = new UserStoryArrayAdapter(this, stories);
         lView.setAdapter(adapter);
-        this.swipeRefreshLayout.setRefreshing(false);
+        this.mSwipeRefreshLayout.setRefreshing(false);
     }
 
 }

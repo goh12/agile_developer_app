@@ -15,10 +15,10 @@ public class CreateProjectActivity extends AppCompatActivity {
 
     ProjectService service = null;
 
-    private Button createButton;
-    private Button backButton;
-    private EditText projectName;
-    private EditText projectToken;
+    private Button mCreateButton;
+    private Button mBackButton;
+    private EditText mProjectName;
+    private EditText mProjectToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +26,22 @@ public class CreateProjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_project);
         this.service = new ProjectService(this);
 
-        createButton = (Button) findViewById(R.id.createButton);
-        backButton = (Button) findViewById(R.id.backButton);
-        projectName = (EditText) findViewById(R.id.projectNameInput);
-        projectToken = (EditText) findViewById(R.id.projectTokenInput);
+        mCreateButton = (Button) findViewById(R.id.createButton);
+        mBackButton = (Button) findViewById(R.id.backButton);
+        mProjectName = (EditText) findViewById(R.id.projectNameInput);
+        mProjectToken = (EditText) findViewById(R.id.projectTokenInput);
 
-        createButton.setOnClickListener(new View.OnClickListener() {
+        mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = projectName.getText().toString();
-                String token = projectToken.getText().toString();
+                String name = mProjectName.getText().toString();
+                String token = mProjectToken.getText().toString();
 
                 createProject(name, token);
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CreateProjectActivity.super.onBackPressed();

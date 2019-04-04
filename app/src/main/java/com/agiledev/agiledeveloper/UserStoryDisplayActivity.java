@@ -15,21 +15,21 @@ import com.agiledev.agiledeveloper.services.UserStoryService;
 public class UserStoryDisplayActivity extends AppCompatActivity {
 
     private UserStory story;
-    private TextView textContentView;
-    private TextView authorView;
+    private TextView mTextContentView;
+    private TextView mAuthorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_story_display);
 
-        textContentView = (TextView) findViewById(R.id.display_userstory_textContent);
-        authorView = (TextView) findViewById(R.id.display_userstory_author);
+        mTextContentView = (TextView) findViewById(R.id.display_userstory_textContent);
+        mAuthorView = (TextView) findViewById(R.id.display_userstory_author);
 
         this.story = (UserStory) getIntent().getSerializableExtra("UserStory");
 
-        textContentView.setText(this.story.getTextContent());
-        authorView.setText("Author: " + this.story.getAuthor());
+        mTextContentView.setText(this.story.getTextContent());
+        mAuthorView.setText("Author: " + this.story.getAuthor());
     }
 
     /**
