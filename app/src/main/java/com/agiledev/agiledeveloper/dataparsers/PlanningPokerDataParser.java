@@ -2,6 +2,7 @@ package com.agiledev.agiledeveloper.dataparsers;
 
 import com.agiledev.agiledeveloper.datacontrollers.PlanningPokerDataController;
 import com.agiledev.agiledeveloper.entities.Estimate;
+import com.agiledev.agiledeveloper.entities.Project;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,6 +74,20 @@ public class PlanningPokerDataParser {
         }
         return null;
 
+    }
+
+
+    public ResponseWrapper<Project> finalizeEstimates() {
+        try {
+            JSONObject res = this.controller.finalizeEstimate(new JSONObject());
+
+            boolean success = res.getBoolean("success");
+            String message = res.getString("message");
+
+            return new ResponseWrapper<>(success, message, null);
+        } catch (JSONException e) {
+            return new ResponseWrapper<>(false, "Server error", null);
+        }
     }
 
 }

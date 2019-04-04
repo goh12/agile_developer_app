@@ -86,4 +86,33 @@ public class PriorityDataController {
         }
         return null;
     }
+
+    /**
+     * framkvæmir finalize estimates kall á server fyrir
+     * priority estimates
+     * @return
+     */
+    public JSONObject finalizeEstimates(JSONObject json) {
+
+        RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
+        Request req = new Request.Builder()
+                .url("https://agiledevhb.herokuapp.com/api/priority/finalizeEstimates")
+                .patch(body)
+                .build();
+
+        try {
+            Response res = client.newCall(req).execute();
+            if (res.isSuccessful()) {
+                String jsonString = res.body().string();
+
+                JSONObject ret = new JSONObject(jsonString);
+                return ret;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
