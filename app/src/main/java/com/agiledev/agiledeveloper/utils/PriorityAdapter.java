@@ -101,6 +101,10 @@ public class PriorityAdapter extends ArrayAdapter<UserStory> {
             public void onClick(View v) {
 
                 String valueString = estimateValue.getText().toString();
+                if (valueString.equals("")) {
+                    return;
+                }
+
                 int finalValue = Integer.parseInt(valueString);
 
                 String estimateExplanationValue = estimateExplanation.getText().toString();

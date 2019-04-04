@@ -52,6 +52,10 @@ public class CreateProjectActivity extends AppCompatActivity {
 
     public void createProject(String name, String token) {
         // kalla project service hér
+        if (name.equals("") || token.equals("")) {
+            Toast.makeText(this,"Input fields cannot be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
         service.create(name, token);
     }
 

@@ -141,6 +141,11 @@ public class UserStoryDataController {
 
                 JSONObject ret = new JSONObject(jsonString);
                 return ret;
+            } else {
+                String jsonString = res.body().string();
+
+                JSONObject ret = new JSONObject(jsonString);
+                return ret;
             }
         } catch (IOException e) {
             e.printStackTrace();
