@@ -107,4 +107,27 @@ public class PriorityService {
         t.start();
     }
 
+    /**
+     * reiknar út loka estimate og vistar á server
+     */
+    public void finalizeEstimates() {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                final ResponseWrapper<Estimate> res = parser.finalizeEstimates();
+                final PriorityActivity activity = (PriorityActivity) context;
+
+                activity.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run()  {
+                        activity.estimatesFinalized(res.getSuccess());
+                    }
+                });
+            }
+        });
+
+        t.start();
+    }
 }

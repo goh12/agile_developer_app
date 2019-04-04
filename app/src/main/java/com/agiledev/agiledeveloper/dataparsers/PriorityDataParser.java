@@ -73,5 +73,19 @@ public class PriorityDataParser {
         return null;
 
     }
+
+    public ResponseWrapper<Estimate> finalizeEstimates() {
+        try {
+            JSONObject ob = this.controller.finalizeEstimates(new JSONObject());
+
+            boolean success = ob.getBoolean("success");
+            String message = ob.getString("message");
+            return new ResponseWrapper<>(success, message, null);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
 

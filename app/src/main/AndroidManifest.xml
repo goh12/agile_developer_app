@@ -19,13 +19,8 @@
             android:name=".UserStoryEditActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".UserStoryDisplayActivity" />
-<<<<<<< HEAD
-        <activity android:name=".LoginActivity">
-=======
-
         <activity android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
->>>>>>> 73b44f764609c782b91eecda9dc7bb53ce75540d
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
