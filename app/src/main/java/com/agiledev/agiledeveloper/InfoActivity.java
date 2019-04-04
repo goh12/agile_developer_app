@@ -25,6 +25,11 @@ public class InfoActivity extends AppCompatActivity {
         InfoAdapter adapter = new InfoAdapter(getSupportFragmentManager());
 
 
+        adapter.addFragment(new InfoScreenProject());
+        adapter.addFragment(new InfoScreenProject());
+
+        mViewPager.setAdapter(adapter);
+
 
 
         mGotIt.setOnClickListener(new View.OnClickListener() {
