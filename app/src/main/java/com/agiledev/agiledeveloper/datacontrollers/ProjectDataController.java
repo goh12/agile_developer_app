@@ -101,6 +101,7 @@ public class ProjectDataController {
         try {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()) {
+                Log.e("DATAPARSER", res.toString());
                 String jsonResponse = res.body().string();
                 Log.w("JSON", jsonResponse);
                 JSONObject ret = new JSONObject(jsonResponse);
