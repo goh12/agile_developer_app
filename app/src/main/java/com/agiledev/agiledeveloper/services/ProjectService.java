@@ -120,7 +120,7 @@ public class ProjectService {
 
                     @Override
                     public void run() {
-                        activity.isLoggedIn(res.getContent());
+                        activity.isLoggedIn(res.getContent() == null);
                     }
                 });
             }
