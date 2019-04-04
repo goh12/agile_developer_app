@@ -31,7 +31,8 @@
             app:elevation="6dp"
             android:tint="#FFF"
             android:backgroundTint="@color/colorPrimary"
-            app:srcCompat="@drawable/ic_baseline_add_24px" />
+            app:srcCompat="@drawable/ic_baseline_add_24px"
+        />
 
     </android.support.design.widget.CoordinatorLayout>
 
