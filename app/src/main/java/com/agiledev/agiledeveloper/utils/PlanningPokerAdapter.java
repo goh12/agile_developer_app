@@ -73,6 +73,10 @@ public class PlanningPokerAdapter extends ArrayAdapter<UserStory> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (story.getPlanningPokerEstimates().size() == 0) {
+                    return;
+                }
                 if(estimatesListView.getVisibility() == View.GONE) {
                     estimateCreateView.setVisibility(View.GONE);
                     estimatesListView.setVisibility(View.VISIBLE);
