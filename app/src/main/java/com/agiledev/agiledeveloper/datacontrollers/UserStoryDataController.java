@@ -153,7 +153,14 @@ public class UserStoryDataController {
             Log.e("NETWORKING", "Failed to parse JSON response");
             e.printStackTrace();
         }
-        return null;
-    }
 
+        JSONObject ob = new JSONObject();
+        try {
+            ob.put("success", false);
+            ob.put("message", "Server error");
+        } catch (JSONException e) {
+            Log.e("SERVER ERROR", "Server produced error");
+        }
+        return ob;
+    }
 }

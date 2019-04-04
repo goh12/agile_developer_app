@@ -130,8 +130,13 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
+<<<<<<< HEAD
                             <entry key="outputName" value="ic_icons8_info" />
                             <entry key="sourceFile" value="C:\Users\gudmu\Desktop\Skoli\hugbunadarverkefni2\icons8-info.svg" />
+=======
+                            <entry key="outputName" value="ic_outline_add_circle_outline_24px" />
+                            <entry key="sourceFile" value="C:\Users\Sverrir\Desktop\outline-add_circle_outline-24px.svg" />
+>>>>>>> 73b44f764609c782b91eecda9dc7bb53ce75540d
                           </map>
                         </option>
                       </PersistentState>
