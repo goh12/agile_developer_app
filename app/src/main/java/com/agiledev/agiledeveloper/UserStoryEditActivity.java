@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.entities.UserStory;
 import com.agiledev.agiledeveloper.services.UserStoryService;
+import com.agiledev.agiledeveloper.utils.ProjectContainer;
 
 public class UserStoryEditActivity extends AppCompatActivity {
 
@@ -25,6 +27,14 @@ public class UserStoryEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_story_edit);
+
+        // Náum í Project úr ProjectContainer til þess að uppfæra titilin á "Action bar" fyrir Project Activity
+        Project p = ProjectContainer.getProject();
+        if(p != null){
+            String title = p.getName();
+            setTitle(title);
+        }
+        else setTitle("Project name not found");
 
         this.Service = new UserStoryService(this);
         this.isEditing = getIntent().getBooleanExtra("isEditing", false);

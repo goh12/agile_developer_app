@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.agiledev.agiledeveloper.dataparsers.PlanningPokerDataParser;
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.services.PlanningPokerService;
 import com.agiledev.agiledeveloper.services.UserStoryService;
 import com.agiledev.agiledeveloper.utils.PlanningPokerAdapter;
@@ -21,6 +22,14 @@ public class PlanningPokerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning_poker);
+
+        // Náum í Project úr ProjectContainer til þess að uppfæra titilin á "Action bar" fyrir Project Activity
+        Project p = ProjectContainer.getProject();
+        if(p != null){
+            String title = p.getName();
+            setTitle(title);
+        }
+        else setTitle("Project name not found");
 
         ListView lv = (ListView) findViewById(R.id.planning_poker_userStoryListView);
         PlanningPokerAdapter adapter = new PlanningPokerAdapter(this, ProjectContainer.getUserStories());
