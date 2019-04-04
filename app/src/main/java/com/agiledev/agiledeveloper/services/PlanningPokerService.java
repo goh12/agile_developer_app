@@ -7,6 +7,7 @@ import com.agiledev.agiledeveloper.PlanningPokerActivity;
 import com.agiledev.agiledeveloper.dataparsers.PlanningPokerDataParser;
 import com.agiledev.agiledeveloper.dataparsers.ResponseWrapper;
 import com.agiledev.agiledeveloper.entities.Estimate;
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.entities.UserStory;
 
 import java.util.List;
@@ -72,6 +73,7 @@ public class PlanningPokerService {
                 final ResponseWrapper<Estimate> res = parser.delete(planningPokerEstimate);
                 final PlanningPokerActivity activity = (PlanningPokerActivity) context;
 
+
                 if (res.getSuccess()) {
                     UserStory us = planningPokerEstimate.getUserStory();
                     List<Estimate> estimates = us.getPlanningPokerEstimates();
@@ -98,5 +100,24 @@ public class PlanningPokerService {
     }
 
 
+    public void finalizeEstimates() {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final ResponseWrapper<Project> res = parser.finalizeEstimates();
+                final PlanningPokerActivity activity = (PlanningPokerActivity) context;
+
+
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.estimatesFinalized(res.getSuccess());
+                    }
+                });
+            }
+        });
+
+        t.start();
+    }
 
 }

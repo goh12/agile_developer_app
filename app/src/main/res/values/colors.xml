@@ -6,4 +6,5 @@
     <color name="colorBackground">#f5f8fa</color>
     <color name="white">#fff</color>
     <color name="borderColor">#000</color>
+    <color name="translucentBackround">#00005005</color>
 </resources>

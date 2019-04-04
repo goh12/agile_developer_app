@@ -88,4 +88,30 @@ public class PlanningPokerDataController {
         }
         return null;
     }
+
+
+    public JSONObject finalizeEstimate(JSONObject json) {
+        RequestBody body = RequestBody.create(Networking.MEDIA_TYPE_JSON, json.toString());
+        Request req = new Request.Builder()
+                .url("https://agiledevhb.herokuapp.com/api/planningpoker/finalizeEstimates")
+                .patch(body)
+                .build();
+
+        try {
+            Response res = client.newCall(req).execute();
+            if (res.isSuccessful()) {
+                String jsonString = res.body().string();
+
+                JSONObject ret = new JSONObject(jsonString);
+                return ret;
+            } else {
+                Log.e("ERROR", res.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
