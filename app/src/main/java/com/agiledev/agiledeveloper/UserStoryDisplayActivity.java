@@ -9,8 +9,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.agiledev.agiledeveloper.entities.Project;
 import com.agiledev.agiledeveloper.entities.UserStory;
 import com.agiledev.agiledeveloper.services.UserStoryService;
+import com.agiledev.agiledeveloper.utils.ProjectContainer;
 
 public class UserStoryDisplayActivity extends AppCompatActivity {
 
@@ -36,6 +38,14 @@ public class UserStoryDisplayActivity extends AppCompatActivity {
         mAuthorView.setText("Author: " + this.story.getAuthor());
         mPlanningPokerEstimate.setText(String.valueOf(this.story.getPlanningPokerPriority()));
         mPriority.setText(String.valueOf(this.story.getPriority()));
+
+        // Náum í Project úr ProjectContainer til þess að uppfæra titilin á "Action bar" fyrir Project Activity
+        Project p = ProjectContainer.getProject();
+        if(p != null){
+            String title = p.getName();
+            setTitle(title);
+        }
+        else setTitle("Project name not found");
     }
 
     /**

@@ -115,6 +115,10 @@ public class ProjectService {
             public void run() {
                 final ResponseWrapper<Project> res = parser.checkLogin();
 
+                if (res.getSuccess()) {
+                    ProjectContainer.setProject(res.getContent());
+                }
+
                 final LoginActivity activity = (LoginActivity) context;
                 activity.runOnUiThread(new Runnable() {
 
