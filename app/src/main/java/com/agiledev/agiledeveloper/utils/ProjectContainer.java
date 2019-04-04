@@ -28,5 +28,18 @@ public class ProjectContainer {
         }
         return userStories;
     }
+
+    /**
+     * Finnur user story frá ID
+     * @param id
+     * @return UserStory, null ef hún finnst ekki.
+     */
+    public static UserStory findUserStoryById(long id) {
+        for (UserStory us : userStories) {
+            if (us.getId() == id) return us;
+        }
+
+        return null;
+    }
 }
 

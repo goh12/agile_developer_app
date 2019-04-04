@@ -18,7 +18,7 @@
         android:textAlignment="center"
         android:background="@drawable/userstory_content_background"
         android:textSize="16dp"
-        />
+    />
 
     <TextView
         android:id="@+id/display_userstory_author"

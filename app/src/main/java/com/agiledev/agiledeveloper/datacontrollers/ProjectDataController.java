@@ -42,7 +42,7 @@ public class ProjectDataController {
             Response res = client.newCall(req).execute();
             if (res.isSuccessful()){
                 String jsonString = res.body().string();
-                Log.e("NETWORKING", res.header("Set-Cookie"));
+                Log.e("NETWORKING", jsonString);
                 JSONObject ret = new JSONObject(jsonString);
                 return ret;
             }

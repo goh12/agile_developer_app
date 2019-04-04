@@ -78,6 +78,8 @@ public class PlanningPokerDataController {
 
                 JSONObject ret = new JSONObject(jsonString);
                 return ret;
+            } else {
+                Log.e("ERROR", res.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();

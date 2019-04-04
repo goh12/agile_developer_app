@@ -37,7 +37,7 @@ public class UserStoryService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.create(userStory);
+                final ResponseWrapper<UserStory> res = parser.create(userStory);
 
                 final UserStoryEditActivity activity = (UserStoryEditActivity) context;
                 activity.runOnUiThread(new Runnable() {
@@ -63,7 +63,7 @@ public class UserStoryService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.delete(userStory);
+                final ResponseWrapper<UserStory> res = parser.delete(userStory);
                 final UserStoryDisplayActivity activity = (UserStoryDisplayActivity) context;
 
                 if (res.getSuccess()) {
@@ -93,11 +93,11 @@ public class UserStoryService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.update(userStory);
+                final ResponseWrapper<UserStory> res = parser.update(userStory);
 
                 UserStory UserStoryResponse = null;
                 if (res.getSuccess()) {
-                    UserStoryResponse = (UserStory) res.getContent();
+                    UserStoryResponse = res.getContent();
                     Log.e("TEST", UserStoryResponse.toString());
                 }
 
@@ -125,7 +125,7 @@ public class UserStoryService {
             @Override
             public void run() {
 
-                final ResponseWrapper res = parser.getAll();
+                final ResponseWrapper<List<UserStory>> res = parser.getAll();
                 final ProjectActivity activity = (ProjectActivity) context;
 
                 activity.runOnUiThread(new Runnable() {
@@ -133,7 +133,7 @@ public class UserStoryService {
                     @Override
                     public void run() {
                         if (res.getSuccess()) {
-                            activity.displayUserStories((List<UserStory>) res.getContent());
+                            activity.displayUserStories(res.getContent());
                         } else {
                             activity.displayUserStories(null);
                         }

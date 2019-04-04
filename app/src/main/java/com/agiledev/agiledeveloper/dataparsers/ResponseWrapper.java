@@ -1,12 +1,12 @@
 package com.agiledev.agiledeveloper.dataparsers;
 
-public class ResponseWrapper {
+public class ResponseWrapper<T> {
 
     private boolean success;
     private String message;
-    private Object content;
+    private T content;
 
-    public  ResponseWrapper(boolean success, String message, Object content) {
+    public  ResponseWrapper(boolean success, String message, T content) {
         this.success = success;
         this.message = message;
         this.content = content;
@@ -16,7 +16,7 @@ public class ResponseWrapper {
     /**
      * @return the content
      */
-    public Object getContent() {
+    public T getContent() {
         return this.content;
     }
 

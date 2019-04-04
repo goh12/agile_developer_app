@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserStoryDataParser {
     UserStoryDataController controller;
@@ -18,7 +19,7 @@ public class UserStoryDataParser {
         this.controller = new UserStoryDataController();
     }
 
-    public ResponseWrapper create(UserStory userStory) {
+    public ResponseWrapper<UserStory> create(UserStory userStory) {
         try {
 
             JSONObject ob = new JSONObject();
@@ -32,17 +33,17 @@ public class UserStoryDataParser {
 
             // þurfum ekki að búa til UserStory hlut ef request-ið gekk ekki
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<>(success, message, null);
             }
             //boolean success, String message, Object content
-            return new ResponseWrapper(success, message, userStory);
+            return new ResponseWrapper<>(success, message, userStory);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return  null;
     }
 
-    public ResponseWrapper update(UserStory userStory) {
+    public ResponseWrapper<UserStory> update(UserStory userStory) {
         try {
 
             JSONObject ob = UStoJSON(userStory);
@@ -53,17 +54,17 @@ public class UserStoryDataParser {
 
             // þurfum ekki að búa til UserStory hlut ef request-ið gekk ekki
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<>(success, message, null);
             }
             //boolean success, String message, Object content
-            return new ResponseWrapper(success, message, userStory);
+            return new ResponseWrapper<>(success, message, userStory);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return  null;
     }
 
-    public ResponseWrapper delete(UserStory userStory){
+    public ResponseWrapper<UserStory> delete(UserStory userStory){
         try {
 
             JSONObject ob = UStoJSON(userStory);
@@ -74,17 +75,17 @@ public class UserStoryDataParser {
 
             // þurfum ekki að búa til UserStory hlut ef request-ið gekk ekki
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<>(success, message, null);
             }
             //boolean success, String message, Object content
-            return new ResponseWrapper(success, message, null);
+            return new ResponseWrapper<>(success, message, null);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return  null;
     }
 
-    public ResponseWrapper getAll(){
+    public ResponseWrapper<List<UserStory>> getAll(){
         try{
             JSONObject response =  this.controller.getAll();
 
@@ -92,7 +93,7 @@ public class UserStoryDataParser {
             String message = response.getString("message");
 
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<>(success, message, null);
             }
 
             JSONArray content = response.getJSONArray("content");
@@ -102,12 +103,12 @@ public class UserStoryDataParser {
                 userStories.add(JSONtoUS(content.getJSONObject(i)));
             }
 
-            return new ResponseWrapper(true, "Success", userStories);
+            return new ResponseWrapper<>(true, "Success", userStories);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return new ResponseWrapper(false, "Fetching user stories failed", null);
+        return new ResponseWrapper<>(false, "Fetching user stories failed", null);
     }
 
     private UserStory JSONtoUS(JSONObject userStoryJSON){
@@ -137,6 +138,8 @@ public class UserStoryDataParser {
                         new Estimate(priorityEsimate.getInt("id"));
                 estimate.setEstimate(priorityEsimate.getInt("estimate"));
                 estimate.setExplanation(priorityEsimate.getString("explanation"));
+                estimate.setUserStory(us);
+                estimate.setType(Estimate.Type.PRIORITY);
                 priorityEstimatesList.add(estimate);
             }
 
@@ -149,6 +152,8 @@ public class UserStoryDataParser {
                         new Estimate(planningPokerPriorityEsimate.getInt("id"));
                 estimate.setEstimate(planningPokerPriorityEsimate.getInt("estimate"));
                 estimate.setExplanation(planningPokerPriorityEsimate.getString("explanation"));
+                estimate.setUserStory(us);
+                estimate.setType(Estimate.Type.PLANNING_POKER);
                 planningPokerEstimatesList.add(estimate);
             }
 

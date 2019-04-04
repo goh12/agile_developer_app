@@ -14,7 +14,7 @@ public class PlanningPokerDataParser {
         this.controller = new PlanningPokerDataController();
     }
 
-    public ResponseWrapper create(Estimate estimate) {
+    public ResponseWrapper<Estimate> create(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             /*{
@@ -34,7 +34,7 @@ public class PlanningPokerDataParser {
             String message = ob.getString("message");
 
             if (!success) {
-                return new ResponseWrapper(success, message, null);
+                return new ResponseWrapper<Estimate>(success, message, null);
             } else {
                 JSONObject projectJSON = ob.getJSONObject("content");
                 int returnEstimate = projectJSON.getInt("estimate");
@@ -45,7 +45,7 @@ public class PlanningPokerDataParser {
                 planningPokerEstimate.setExplanation(explanation);
                 planningPokerEstimate.setEstimate(returnEstimate);
 
-                return new ResponseWrapper(success, message, planningPokerEstimate);
+                return new ResponseWrapper<>(success, message, planningPokerEstimate);
             }
 
         } catch (JSONException e) {
@@ -54,20 +54,19 @@ public class PlanningPokerDataParser {
         return null;
     }
 
-    public ResponseWrapper delete(Estimate estimate) {
+    public ResponseWrapper<Estimate> delete(Estimate estimate) {
         try {
             JSONObject ob = new JSONObject();
             ob.put("id",estimate.getId());
             JSONObject obUserStory = new JSONObject();
             obUserStory.put("id", estimate.getUserStory().getId());
             ob.putOpt("userStory", obUserStory);
-            ob = this.controller.delete(ob);
             JSONObject response = this.controller.delete(ob);
 
             boolean success = response.getBoolean("success");
             String message = response.getString("message");
 
-            return new ResponseWrapper(success, message, null);
+            return new ResponseWrapper<>(success, message, null);
 
         } catch (JSONException e) {
             e.printStackTrace();

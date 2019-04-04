@@ -16,4 +16,5 @@
     <string name="userstory_edit_label_author">Author:</string>
     <string name="userstory_edit_label_button_create">Create</string>
     <string name="userstory_edit_label_button_edit">Edit</string>
+    <string name="estimate_delete">Delete</string>
 </resources>

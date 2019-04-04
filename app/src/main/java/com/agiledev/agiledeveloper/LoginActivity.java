@@ -16,13 +16,13 @@ import com.agiledev.agiledeveloper.datacontrollers.ProjectDataController;
 import com.agiledev.agiledeveloper.services.ProjectService;
 
 public class LoginActivity extends AppCompatActivity {
-    private Button mButtonLogin;
-    private Button mButtonProject;
-    private TextView mTextView;
-    private EditText mTokenInput;
+    private Button buttonLogin;
+    private Button buttonProject;
+    private TextView textView;
+    private EditText tokenInput;
 
-    private LinearLayout mLoginLayout;
-    private ProgressBar mProgressBar;
+    private LinearLayout loginLayout;
+    private ProgressBar progressBar;
 
     private ProjectDataController controller;
     @Override
@@ -30,22 +30,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mTextView = (TextView) findViewById(R.id.loginTitle);
-        mButtonLogin = (Button) findViewById(R.id.loginButton);
-        mButtonProject = (Button) findViewById(R.id.createProjectButton);
-        mTokenInput = (EditText) findViewById(R.id.tokenInput);
-        mLoginLayout = (LinearLayout) findViewById(R.id.login_layout);
-        mProgressBar = (ProgressBar) findViewById(R.id.loginProgressbar);
+        textView = (TextView) findViewById(R.id.loginTitle);
+        buttonLogin = (Button) findViewById(R.id.loginButton);
+        buttonProject = (Button) findViewById(R.id.createProjectButton);
+        tokenInput = (EditText) findViewById(R.id.tokenInput);
+        loginLayout = (LinearLayout) findViewById(R.id.login_layout);
+        progressBar = (ProgressBar) findViewById(R.id.loginProgressbar);
 
-        mButtonLogin.setOnClickListener(new View.OnClickListener() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String content = mTokenInput.getText().toString();
+                String content = tokenInput.getText().toString();
                 login(content);
             }
         });
 
-        mButtonProject.setOnClickListener(new View.OnClickListener() {
+        buttonProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createProject();
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void afterLogin(boolean success) {
         if (success) {
-            mTextView.setText("Success");
+            textView.setText("Success");
             Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_LONG).show();
 
             // opna project activity
@@ -86,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void isLoggedIn(boolean success) {
-        mLoginLayout.setVisibility(View.VISIBLE);
-        mProgressBar.setVisibility(View.INVISIBLE);
+        loginLayout.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
         if (success) {
             Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_LONG).show();
 
@@ -99,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        mLoginLayout.setVisibility(View.INVISIBLE);
-        mProgressBar.setVisibility(View.VISIBLE);
+        loginLayout.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
         ProjectService service = new ProjectService(this);
         service.checkLogin();
     }
