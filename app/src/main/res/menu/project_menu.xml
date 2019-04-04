@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_create_new"
-        android:title="Create user story"
-        android:icon="@drawable/ic_baseline_add_24px"
-        app:showAsAction="ifRoom"
-    />
-
-    <item
         android:id="@+id/action_planning_poker"
         android:title="Planning Poker"
     />

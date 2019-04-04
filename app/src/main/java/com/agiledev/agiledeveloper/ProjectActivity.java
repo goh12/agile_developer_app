@@ -2,12 +2,15 @@ package com.agiledev.agiledeveloper;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import android.content.Intent;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -54,6 +57,20 @@ public class ProjectActivity extends AppCompatActivity {
             }
         });
 
+        // Floating takki
+        FloatingActionButton floatingActionButton =
+                (FloatingActionButton) findViewById(R.id.floating_action_button);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(getBaseContext(), UserStoryEditActivity.class);
+                intent.putExtra("isEditing", false);
+                startActivityForResult(intent, 0);
+            }
+        });
+
 
         //testService.delete(testEstimate);
     }
@@ -87,12 +104,6 @@ public class ProjectActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 return true;
-
-            case R.id.action_create_new:
-                intent = new Intent(getBaseContext(), UserStoryEditActivity.class);
-                intent.putExtra("isEditing", false);
-                startActivityForResult(intent, 0);
-                break;
 
             case R.id.action_planning_poker:
                 intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
