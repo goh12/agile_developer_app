@@ -32,11 +32,8 @@ public class ProjectService {
      */
     public void login(String inputToken) { //Prufu og sýnifall
         Thread t = new Thread(new Runnable() { //Búa til nýjan þráð. (Net köll mega ekki vera á main þráð.)
-            /*
-                Það er bannað að gera networking á UserInterfaceThread í android appinu. Þessvegna þurfum
-                við að búa til nýjan þráð og keyra hann. Síðan í lokin á honum þá biðjum við
-                UserInterficeThread um að birta niðurstöðurnar.
-             */
+
+
             @Override
             public void run() { //Run aðferð sem keyrð er fyrir þráð t.
                 Project project = new Project();  //Setja upp gögnin sem þarf að vinna úr.
