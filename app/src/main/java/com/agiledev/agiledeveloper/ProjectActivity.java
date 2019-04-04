@@ -94,6 +94,11 @@ public class ProjectActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
                 break;
 
+            case R.id.action_info:
+                intent = new Intent(getBaseContext(), InfoActivity.class);
+                startActivityForResult(intent, 0);
+                break;
+
             case R.id.action_planning_poker:
                 intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
                 startActivity(intent);

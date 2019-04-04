@@ -17,4 +17,6 @@
     <string name="userstory_edit_label_button_create">Create</string>
     <string name="userstory_edit_label_button_edit">Edit</string>
     <string name="estimate_delete">Delete</string>
+    <string name="got_it">Got it!</string>
+    <string name="info_text">The Agile Developer is an android application for managing agile software project management activities. You and your agile development team can use this app as a platform to manage the team’s user stories. You can add user stories by pressing the plus icon. To edit or delete an existing user story, simply press the user story itself and you will be carried to a screen dedicated to the corresponding user story. You also have the possibility to play planning poker and estimate a user story priority. Simple select the menu icon in the top right corner to use these activities.</string>
 </resources>
