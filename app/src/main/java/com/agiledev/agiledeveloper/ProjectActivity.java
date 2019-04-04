@@ -96,12 +96,12 @@ public class ProjectActivity extends AppCompatActivity {
 
             case R.id.action_planning_poker:
                 intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 break;
 
             case R.id.action_estimate:
                 intent = new Intent(getBaseContext(), PriorityActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 break;
         }
 
@@ -117,11 +117,7 @@ public class ProjectActivity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK) {
-            if(data.getBooleanExtra("shouldRefresh", false)) {
-                this.userStoryService.getAll();
-            }
-        }
+        this.userStoryService.getAll();
     }
 
     /**
