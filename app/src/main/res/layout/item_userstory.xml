@@ -10,17 +10,31 @@ android:foreground="?attr/selectableItemBackground"
 >
 
     <TextView
-        android:id="@+id/user_story_content"
+        android:id="@+id/display_userstory_textContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lineHeight="32dp"
+        android:lineHeight="22dp"
+        android:textSize="20dp"
+        android:minLines="2"
+        android:maxLines="4"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:padding="2dp"
+        android:gravity="center_vertical"
+    />
+    <TextView
+        android:id="@+id/display_userstory_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineHeight="16dp"
         android:textSize="16dp"
         android:minLines="2"
         android:maxLines="4"
-        android:ellipsize="end"
-        android:textColor="#111111"
-        android:padding="5dp"
-        android:gravity="center_vertical"
-    />
+        android:textColor="@color/colorPrimary"
+        android:padding="0dp"
+        android:textStyle="italic"
+        android:gravity="right"
+        />
+
 
 </LinearLayout>

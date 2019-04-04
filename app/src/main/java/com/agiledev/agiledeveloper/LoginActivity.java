@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        checkLogin();
+        //checkLogin();
     }
 
 
