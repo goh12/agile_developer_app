@@ -105,20 +105,11 @@ public class ProjectActivity extends AppCompatActivity {
                 finish();
                 return true;
 
-<<<<<<< HEAD
-=======
-            case R.id.action_create_new:
-                intent = new Intent(getBaseContext(), UserStoryEditActivity.class);
-                intent.putExtra("isEditing", false);
-                startActivityForResult(intent, 0);
-                break;
-
             case R.id.action_info:
                 intent = new Intent(getBaseContext(), InfoActivity.class);
                 startActivityForResult(intent, 0);
                 break;
 
->>>>>>> 6bb74bd2e01029f194fe80ddba796b106968de7d
             case R.id.action_planning_poker:
                 intent = new Intent(getBaseContext(), PlanningPokerActivity.class);
                 startActivityForResult(intent, 0);
