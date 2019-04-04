@@ -32,8 +32,10 @@ public class UserStoryArrayAdapter extends ArrayAdapter<UserStory> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_userstory, parent, false);
         }
 
-        TextView storyText = (TextView) convertView.findViewById(R.id.user_story_content);
+        TextView storyText = (TextView) convertView.findViewById(R.id.display_userstory_textContent);
+        TextView storyAuthor = (TextView) convertView.findViewById(R.id.display_userstory_author);
         storyText.setText(story.getTextContent());
+        storyAuthor.setText(story.getAuthor());
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
