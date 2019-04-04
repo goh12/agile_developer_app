@@ -30,4 +30,56 @@
         android:textColor="#444444"
     />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Planning Poker Estimate"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Priority"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/user_story_display_planningpokerestimate"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_weight="1"
+        />
+
+        <TextView
+            android:id="@+id/user_story_display_priority"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_weight="1"
+        />
+    </LinearLayout>
+
 </LinearLayout>

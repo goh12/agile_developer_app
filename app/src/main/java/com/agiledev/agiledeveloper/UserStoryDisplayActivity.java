@@ -17,6 +17,8 @@ public class UserStoryDisplayActivity extends AppCompatActivity {
     private UserStory story;
     private TextView mTextContentView;
     private TextView mAuthorView;
+    private TextView mPlanningPokerEstimate;
+    private TextView mPriority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +27,15 @@ public class UserStoryDisplayActivity extends AppCompatActivity {
 
         mTextContentView = (TextView) findViewById(R.id.display_userstory_textContent);
         mAuthorView = (TextView) findViewById(R.id.display_userstory_author);
+        mPlanningPokerEstimate = (TextView) findViewById(R.id.user_story_display_planningpokerestimate);
+        mPriority = (TextView) findViewById(R.id.user_story_display_priority);
 
         this.story = (UserStory) getIntent().getSerializableExtra("UserStory");
 
         mTextContentView.setText(this.story.getTextContent());
         mAuthorView.setText("Author: " + this.story.getAuthor());
+        mPlanningPokerEstimate.setText(String.valueOf(this.story.getPlanningPokerPriority()));
+        mPriority.setText(String.valueOf(this.story.getPriority()));
     }
 
     /**
